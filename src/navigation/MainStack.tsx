@@ -18,14 +18,14 @@ const MainStack = () => {
       borderRadius: interpolate(
         (progress as Animated.SharedValue<number>).value,
         [0, 1],
-        [0, 50]
+        [0, 30]
       ),
       transform: [
         {
           scale: interpolate(
             (progress as Animated.SharedValue<number>).value,
             [0, 1],
-            [1, 0.8]
+            [1, 0.7]
           ),
         },
       ],
@@ -39,13 +39,14 @@ const MainStack = () => {
         screenOptions={{
           headerShown: false,
           cardStyle: {
-            backgroundColor: 'orange',
-          },
-          headerStyle: {
-            backgroundColor: 'red',
+            backgroundColor: 'skyblue',
           },
         }}
       >
+        <Stack.Screen name="OnBoarding" component={Home} />
+        <Stack.Screen name="Login" component={Home} />
+        <Stack.Screen name="ResetPassword" component={Home} />
+        <Stack.Screen name="SignUp" component={Home} />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </Animated.View>
