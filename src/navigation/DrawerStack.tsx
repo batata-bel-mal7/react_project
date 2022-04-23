@@ -13,12 +13,12 @@ export default () => {
       }}
       screenOptions={{
         headerShown: false,
-        drawerType: 'slide',
+        drawerType: 'back',
         overlayColor: 'transparent',
         drawerStyle: {
           flex: 1,
           width: '50%',
-          backgroundColor: 'transparent',
+          backgroundColor: '#5956E9',
         },
         sceneContainerStyle: {
           backgroundColor: 'transparent',
