@@ -13,7 +13,6 @@ export default function LargeBottomButton({ text, color }: buttonProps) {
       height: 70,
       borderRadius: 10,
       justifyContent: 'center',
-      marginTop: 400,
       alignSelf: 'center',
       backgroundColor: color,
     },
