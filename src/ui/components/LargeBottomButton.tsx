@@ -1,12 +1,5 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TouchableNativeFeedback,
-  View,
-} from 'react-native'
+import { StyleSheet, Text, TouchableNativeFeedback, View } from 'react-native'
 import React, { useState } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 type buttonProps = {
   text: string
