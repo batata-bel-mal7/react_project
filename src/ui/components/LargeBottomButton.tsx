@@ -1,5 +1,11 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View,
+} from 'react-native'
+import React, { useState } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 type buttonProps = {
@@ -31,12 +37,20 @@ export default function LargeBottomButton({
       fontWeight: '700',
     },
   })
+  const [rippleOverflow, setRippleOverflow] = useState(false)
 
   return (
-    <View>
-      <TouchableOpacity style={styles.LargeButton}>
-        <Text style={styles.textStyle}>{text}</Text>
-      </TouchableOpacity>
+    <View style={styles.LargeButton}>
+      <TouchableNativeFeedback
+        onPress={() => {
+          setRippleOverflow(!rippleOverflow)
+        }}
+        background={TouchableNativeFeedback.Ripple('#e3e3e3', rippleOverflow)}
+      >
+        <View>
+          <Text style={styles.textStyle}>{text}</Text>
+        </View>
+      </TouchableNativeFeedback>
     </View>
   )
 }
