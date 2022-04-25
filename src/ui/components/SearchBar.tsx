@@ -4,9 +4,28 @@ import { TextInput } from 'react-native-gesture-handler'
 
 type search = {
   text: string
+  width: number
+  height: number
 }
 const searchImage: string = '../images/Search.png'
-export default function SearchBar({ text }: search) {
+export default function SearchBar({ text, width, height }: search) {
+  const styles = StyleSheet.create({
+    container: {
+      width: width,
+      height: height,
+      borderColor: '#5956E9',
+      borderWidth: 2,
+      borderRadius: 30,
+      display: 'flex',
+      flexDirection: 'row',
+    },
+    inputStyle: {
+      fontFamily: 'Raleway',
+      fontWeight: '600',
+      fontSize: 16,
+    },
+  })
+
   return (
     <View style={styles.container}>
       <Image
@@ -23,20 +42,3 @@ export default function SearchBar({ text }: search) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: 280,
-    height: 60,
-    borderColor: '#5956E9',
-    borderWidth: 2,
-    borderRadius: 30,
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  inputStyle: {
-    fontFamily: 'Raleway',
-    fontWeight: '600',
-    fontSize: 16,
-  },
-})

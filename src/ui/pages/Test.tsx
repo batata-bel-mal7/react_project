@@ -3,18 +3,32 @@ import React from 'react'
 import LargeBottomButton from '../components/LargeBottomButton'
 import ErrorButton from '../components/ErrorButton'
 import SearchBar from '../components/SearchBar'
+import VariantSelectionButton from '../components/VariantSelectionButton'
 
 export default function Test() {
   return (
     <View>
       <View style={styles.container}>
-        <LargeBottomButton text="Button" color="#5956E9" />
+        <LargeBottomButton
+          text="LargeButton"
+          color="#5956E9"
+          width={270}
+          height={70}
+        />
       </View>
       <View style={styles.container}>
-        <ErrorButton text="Button" />
+        <ErrorButton text="Button" width={214} height={50} />
       </View>
       <View style={styles.container}>
-        <SearchBar text="hi there" />
+        <SearchBar text="hi there" width={270} height={60} />
+      </View>
+      <View style={styles.container}>
+        <VariantSelectionButton
+          text="sky Blue"
+          width={104}
+          height={40}
+          color="#7485C1"
+        />
       </View>
     </View>
   )

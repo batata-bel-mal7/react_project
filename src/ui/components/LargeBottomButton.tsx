@@ -5,12 +5,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 type buttonProps = {
   text: string
   color: string
+  width: number
+  height: number
 }
-export default function LargeBottomButton({ text, color }: buttonProps) {
+export default function LargeBottomButton({
+  text,
+  color,
+  width,
+  height,
+}: buttonProps) {
   const styles = StyleSheet.create({
     LargeButton: {
-      width: 255,
-      height: 70,
+      width: width,
+      height: height,
       borderRadius: 10,
       justifyContent: 'center',
       alignSelf: 'center',
