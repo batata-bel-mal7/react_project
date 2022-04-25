@@ -4,6 +4,7 @@ import LargeBottomButton from '../components/LargeBottomButton'
 import ErrorButton from '../components/ErrorButton'
 import SearchBar from '../components/SearchBar'
 import VariantSelectionButton from '../components/VariantSelectionButton'
+import ItemCounter from '../components/ItemCounter'
 
 export default function Test() {
   return (
@@ -29,6 +30,9 @@ export default function Test() {
           height={40}
           color="#7485C1"
         />
+      </View>
+      <View>
+        <ItemCounter />
       </View>
     </View>
   )
