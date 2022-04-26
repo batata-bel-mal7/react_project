@@ -1,23 +1,30 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function ItemCounter() {
-  const [counter, setCounter] = useState(1)
+export default function ItemCounter({
+  count,
+  onIncrement,
+  onDecrement,
+}: {
+  count: number
+  onIncrement: () => void
+  onDecrement: () => void
+}) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.Button}
         onPress={() => {
-          setCounter(counter - 1)
+          onDecrement()
         }}
       >
         <Text>-</Text>
       </TouchableOpacity>
-      <Text style={styles.counter}>{counter}</Text>
+      <Text style={styles.counter}>{count}</Text>
       <TouchableOpacity
         style={styles.Button}
         onPress={() => {
-          setCounter(counter + 1)
+          onIncrement()
         }}
       >
         <Text>+</Text>
