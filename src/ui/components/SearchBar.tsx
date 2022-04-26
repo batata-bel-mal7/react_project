@@ -1,4 +1,4 @@
-import { Image, Keyboard, StyleSheet, View } from 'react-native'
+import { Image, Keyboard, StyleSheet, View, ViewStyle } from 'react-native'
 import React, { createRef } from 'react'
 import { TapGestureHandler, TextInput } from 'react-native-gesture-handler'
 
