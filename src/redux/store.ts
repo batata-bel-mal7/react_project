@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './counter/counterSlice'
+import networkInfoReducer from './networkInfo/networkInfoSlice'
 const createDebugger = require('redux-flipper').default
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    netwrokInfo: networkInfoReducer,
   },
   middleware: (getDefaultMiddleware) =>
     __DEV__
