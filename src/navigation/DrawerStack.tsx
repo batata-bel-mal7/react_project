@@ -1,7 +1,12 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
+<<<<<<< HEAD
 import DrawerContent from '../ui/pages/DrawerContent'
 import TabStack from './TabStack'
+=======
+import HomeStack from './HomeStack'
+import DrawerContent from '../ui/components/DrawerContent'
+>>>>>>> 273b270 (rename MainStack to HomeStack)
 
 const Drawer = createDrawerNavigator()
 
@@ -29,7 +34,11 @@ export default () => {
       }}
       backBehavior="none"
     >
+<<<<<<< HEAD
       <Drawer.Screen name="HomeStack" component={TabStack} />
+=======
+      <Drawer.Screen name="HomeStack" component={HomeStack} />
+>>>>>>> 273b270 (rename MainStack to HomeStack)
     </Drawer.Navigator>
   )
 }
