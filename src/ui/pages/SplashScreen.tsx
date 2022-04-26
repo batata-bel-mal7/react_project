@@ -22,7 +22,6 @@ const SplashScreen = () => {
       <Image
         source={require('../images/splash.png')}
         resizeMethod="resize"
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           alignSelf: 'center',
           height: ScreenHighet * 0.5,
@@ -33,7 +32,7 @@ const SplashScreen = () => {
       <View
         style={{
           marginHorizontal: 20,
-          marginBottom: "8%",
+          marginBottom: '8%',
         }}
       >
         <LargeBottomButton
