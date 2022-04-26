@@ -1,13 +1,19 @@
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, ViewStyle } from 'react-native'
 import React from 'react'
 import Ripple from './Ripple'
 
 type buttonProps = {
   text: string
-  width: number
-  height: number
+  width: ViewStyle['width']
+  height: ViewStyle['height']
+  onPress: () => void
 }
-export default function ErrorButton({ text, width, height }: buttonProps) {
+export default function ErrorButton({
+  text,
+  width,
+  height,
+  onPress,
+}: buttonProps) {
   const styles = StyleSheet.create({
     mediumButton: {
       width: width,
@@ -20,13 +26,12 @@ export default function ErrorButton({ text, width, height }: buttonProps) {
     textStyle: {
       color: '#F6F6F9',
       alignSelf: 'center',
-      fontFamily: 'Raleway',
-      fontWeight: '700',
+      fontFamily: 'Raleway-Bold',
       fontSize: 15,
     },
   })
   return (
-    <Ripple style={styles.mediumButton}>
+    <Ripple style={styles.mediumButton} onTap={onPress}>
       <Text style={styles.textStyle}>{text}</Text>
     </Ripple>
   )
