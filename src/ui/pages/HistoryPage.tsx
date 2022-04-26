@@ -3,15 +3,14 @@ import React from 'react'
 import ErrorButton from '../components/ErrorButton'
 
 const ScreenHighet = Dimensions.get('window').height
-export default function FavouriteBage({ itemList }: { itemList: any[] }) {
+export default function FavouritePage({ itemList }: { itemList: any[] }) {
   if (itemList.length == 0) {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={styles.container}>
-          <Image source={require('../images/Saly-10.png')} />
-          <Image source={require('../images/Sally-4.png')} />
+          <Image source={require('../images/Saly-11.png')} />
         </View>
-        <Text style={styles.largeTextStyle}>No favorites yet</Text>
+        <Text style={styles.largeTextStyle}>No history yet</Text>
 
         <Text style={styles.smallText}>
           Hit the orange button down below to Create an order
@@ -37,10 +36,10 @@ export default function FavouriteBage({ itemList }: { itemList: any[] }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: '10%',
+    marginBottom: '5%',
   },
   largeTextStyle: {
     fontFamily: 'Raleway',
