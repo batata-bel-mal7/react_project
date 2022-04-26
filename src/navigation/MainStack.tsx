@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import DrawerStack from './DrawerStack'
 import NoIternet from '../ui/pages/NoInternet'
 import { NetworkInfoState } from '../redux/networkInfo/networkInfoSlice'
+import SplashScreen from '../ui/pages/SplashScreen'
 
 const Stack = createStackNavigator()
 
@@ -17,7 +18,10 @@ const MainStack = ({ netinfo }: { netinfo: NetworkInfoState }) => {
       }}
     >
       {netinfo.isInternetReachable ? (
-        <Stack.Screen name="DrawerStack" component={DrawerStack} />
+        <>
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="DrawerStack" component={DrawerStack} />
+        </>
       ) : (
         <Stack.Screen name="NoIternet" component={NoIternet} />
       )}

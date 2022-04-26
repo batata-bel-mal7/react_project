@@ -1,18 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ViewStyle } from 'react-native'
 import React from 'react'
 import Ripple from './Ripple'
 
 type buttonProps = {
   text: string
   color: string
-  width: number
-  height: number
+  width: ViewStyle['width']
+  height: ViewStyle['height']
+  textColor: string
 }
 export default function LargeBottomButton({
   text,
   color,
   width,
   height,
+  textColor,
 }: buttonProps) {
   const styles = StyleSheet.create({
     LargeButton: {
@@ -24,7 +26,7 @@ export default function LargeBottomButton({
       backgroundColor: color,
     },
     textStyle: {
-      color: '#F6F6F9',
+      color: textColor,
       alignSelf: 'center',
       fontSize: 18,
       fontFamily: 'Raleway',
