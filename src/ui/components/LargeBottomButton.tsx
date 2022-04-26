@@ -1,5 +1,6 @@
-import { StyleSheet, Text, TouchableNativeFeedback, View } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import Ripple from './Ripple'
 
 type buttonProps = {
   text: string
@@ -30,20 +31,12 @@ export default function LargeBottomButton({
       fontWeight: '700',
     },
   })
-  const [rippleOverflow, setRippleOverflow] = useState(false)
 
   return (
-    <View style={styles.LargeButton}>
-      <TouchableNativeFeedback
-        onPress={() => {
-          setRippleOverflow(!rippleOverflow)
-        }}
-        background={TouchableNativeFeedback.Ripple('#e3e3e3', rippleOverflow)}
-      >
-        <View>
-          <Text style={styles.textStyle}>{text}</Text>
-        </View>
-      </TouchableNativeFeedback>
-    </View>
+    <Ripple style={styles.LargeButton}>
+      <View>
+        <Text style={styles.textStyle}>{text}</Text>
+      </View>
+    </Ripple>
   )
 }
