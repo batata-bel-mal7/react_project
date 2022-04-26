@@ -1,6 +1,6 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import MainStack from './MainStack'
+import HomeStack from './HomeStack'
 import DrawerContent from '../ui/components/DrawerContent'
 
 const Drawer = createDrawerNavigator()
@@ -26,7 +26,7 @@ export default () => {
       }}
       backBehavior="none"
     >
-      <Drawer.Screen name="MainStack" component={MainStack} />
+      <Drawer.Screen name="HomeStack" component={HomeStack} />
     </Drawer.Navigator>
   )
 }
