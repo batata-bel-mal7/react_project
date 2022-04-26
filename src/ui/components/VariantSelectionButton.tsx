@@ -5,7 +5,6 @@ type buttonType = {
   text: string
   width: number
   height: number
-  color: string
   icon: React.FC
   onPress: () => void
 }
@@ -14,7 +13,6 @@ export default function VariantSelectionButton({
   icon,
   width,
   height,
-  color,
   onPress,
 }: buttonType) {
   const Icon = icon
@@ -31,17 +29,10 @@ export default function VariantSelectionButton({
       borderColor: '#e3e3e3',
       borderWidth: 1,
       justifyContent: 'center',
+      alignItems: 'center',
       borderRadius: 10,
       display: 'flex',
       flexDirection: 'row',
-    },
-    circle: {
-      backgroundColor: color,
-      width: 16,
-      height: 16,
-      alignSelf: 'center',
-      borderRadius: 100,
-      marginLeft: 13,
     },
   })
 
