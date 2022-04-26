@@ -23,7 +23,7 @@ export default function FavouriteBage({ itemList }: { itemList: any[] }) {
         >
           <ErrorButton
             onPress={() => {}}
-            height={ScreenHighet * 0.09}
+            height={ScreenHighet * 0.06}
             text={'Start ordering'}
             width={'53%'}
           />
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
+    marginTop: '10%',
   },
   largeTextStyle: {
     fontFamily: 'Raleway',
