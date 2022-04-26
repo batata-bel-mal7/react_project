@@ -1,23 +1,24 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { TextInput } from 'react-native-gesture-handler'
+import { Image, Keyboard, StyleSheet, View } from 'react-native'
+import React, { createRef } from 'react'
+import { TapGestureHandler, TextInput } from 'react-native-gesture-handler'
 
 type search = {
   text: string
+  onChangeText: (text: string) => void
   width: number
   height: number
 }
 const searchImage: string = '../images/Search.png'
-export default function SearchBar({ text, width, height }: search) {
+export default function SearchBar({ text, onChangeText }: search) {
+  const textRef = createRef<TextInput>()
   const styles = StyleSheet.create({
     container: {
-      width: width,
-      height: height,
+      minHeight: 60,
       borderColor: '#5956E9',
       borderWidth: 2,
       borderRadius: 30,
-      display: 'flex',
       flexDirection: 'row',
+      backgroundColor: 'white',
     },
     inputStyle: {
       flex: 1,
@@ -29,17 +30,31 @@ export default function SearchBar({ text, width, height }: search) {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require(searchImage)}
-        style={{
-          alignSelf: 'center',
-          marginLeft: 19,
-          marginRight: 11,
-          width: 24,
-          height: 24,
+      <TapGestureHandler
+        onEnded={() => {
+          Keyboard.dismiss()
+          textRef.current?.focus()
         }}
+      >
+        <Image
+          source={require(searchImage)}
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            alignSelf: 'center',
+            marginLeft: 19,
+            marginRight: 11,
+            width: 24,
+            height: 24,
+          }}
+        />
+      </TapGestureHandler>
+      <TextInput
+        ref={textRef}
+        value={text}
+        onChangeText={onChangeText}
+        placeholder="input text"
+        style={styles.inputStyle}
       />
-      <TextInput placeholder="input text" style={styles.inputStyle} />
     </View>
   )
 }
