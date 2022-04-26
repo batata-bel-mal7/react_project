@@ -3,7 +3,7 @@ import React from 'react'
 import ErrorButton from '../components/ErrorButton'
 
 const ScreenHighet = Dimensions.get('window').height
-export default function FavouritePage({ itemList }: { itemList: any[] }) {
+export default function HistoryPage({ itemList }: { itemList: any[] }) {
   if (itemList.length == 0) {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
