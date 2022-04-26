@@ -29,9 +29,11 @@ const SplashScreen = () => {
           width: ScreenHighet * 0.4,
         }}
       />
+      <View style={{ flex: 1 }} />
       <View
         style={{
           marginHorizontal: 20,
+          marginBottom: "8%",
         }}
       >
         <LargeBottomButton
