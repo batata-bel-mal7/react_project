@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "426377482610",
+    "project_id": "enkesh-f29fd",
+    "storage_bucket": "enkesh-f29fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426377482610:android:cb452637cbf2a98c1a8deb",
+        "android_client_info": {
+          "package_name": "com.henkesh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426377482610-bhk1rtlv192g8aukcuiobbeilug8juvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.henkesh",
+            "certificate_hash": "3f515b93bc4929dc537dd445d6e6423042e4331c"
+          }
+        },
+        {
+          "client_id": "426377482610-koehcp0jgsl3174jf4o3k8u9q78k7its.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqZWdq01tExaskwcuY0NVxbF_F5KmltcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426377482610-koehcp0jgsl3174jf4o3k8u9q78k7its.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
