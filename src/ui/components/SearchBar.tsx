@@ -20,6 +20,7 @@ export default function SearchBar({ text, width, height }: search) {
       flexDirection: 'row',
     },
     inputStyle: {
+      flex: 1,
       fontFamily: 'Raleway',
       fontWeight: '600',
       fontSize: 16,
