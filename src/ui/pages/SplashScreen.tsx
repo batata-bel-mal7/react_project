@@ -28,16 +28,18 @@ const SplashScreen = () => {
           width: ScreenHighet * 0.4,
         }}
       />
+      <View style={{ flex: 1 }} />
       <View
         style={{
           marginHorizontal: 20,
+          marginBottom: "8%",
         }}
       >
         <LargeBottomButton
           text={'Get started'}
           color={'white'}
           width={'100%'}
-          height={70}
+          height={ScreenHighet * 0.09}
           textColor={'#5956E9'}
         />
       </View>
