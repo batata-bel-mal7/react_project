@@ -1,17 +1,23 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import Ripple from './Ripple'
 type buttonType = {
   text: string
   width: number
   height: number
   color: string
+  icon: React.FC
+  onPress: () => void
 }
 export default function VariantSelectionButton({
   text,
+  icon,
   width,
   height,
   color,
+  onPress,
 }: buttonType) {
+  const Icon = icon
   const styles = StyleSheet.create({
     textStyle: {
       alignSelf: 'center',
@@ -19,6 +25,7 @@ export default function VariantSelectionButton({
       marginRight: 17,
     },
     smallButton: {
+      backgroundColor: 'white',
       width: width,
       height: height,
       borderColor: '#e3e3e3',
@@ -39,11 +46,9 @@ export default function VariantSelectionButton({
   })
 
   return (
-    <View>
-      <TouchableOpacity style={styles.smallButton}>
-        <View style={styles.circle}></View>
-        <Text style={styles.textStyle}>{text}</Text>
-      </TouchableOpacity>
-    </View>
+    <Ripple style={styles.smallButton} onTap={onPress}>
+      <Icon />
+      <Text style={styles.textStyle}>{text}</Text>
+    </Ripple>
   )
 }
