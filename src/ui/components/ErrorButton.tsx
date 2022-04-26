@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import React from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import Ripple from './Ripple'
 
 type buttonProps = {
   text: string
@@ -26,10 +26,8 @@ export default function ErrorButton({ text, width, height }: buttonProps) {
     },
   })
   return (
-    <View>
-      <TouchableOpacity style={styles.mediumButton}>
-        <Text style={styles.textStyle}>{text}</Text>
-      </TouchableOpacity>
-    </View>
+    <Ripple style={styles.mediumButton}>
+      <Text style={styles.textStyle}>{text}</Text>
+    </Ripple>
   )
 }
