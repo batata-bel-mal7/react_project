@@ -1,10 +1,12 @@
-import { Image, Keyboard, StyleSheet, View } from 'react-native'
+import { Image, Keyboard, StyleSheet, View, ViewStyle } from 'react-native'
 import React, { createRef } from 'react'
 import { TapGestureHandler, TextInput } from 'react-native-gesture-handler'
 
 type search = {
   text: string
   onChangeText: (text: string) => void
+  width: ViewStyle['width']
+  height: ViewStyle['height']
 }
 const searchImage: string = '../images/Search.png'
 export default function SearchBar({ text, onChangeText }: search) {
