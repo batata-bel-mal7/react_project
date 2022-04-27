@@ -1,31 +1,24 @@
-import {
-  Image,
-  ImageBackgroundBase,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import SearchBar from '../components/SearchBar'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import Header from '../components/Header'
 import BackIcon from '../components/icons/BackIcon'
+import SearchBar from '../components/SearchBar'
 export default function Search({ itemList }: { itemList: any[] }) {
-  if (itemList.length == 0) {
+  if (itemList.length === 0) {
     return (
       <View>
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.backButton}>
-            <BackIcon />
-          </TouchableOpacity>
-          <View style={styles.searchBar}>
+        <Header
+          leftComponent={<BackIcon />}
+          middleComponent={
             <SearchBar
-              onChangeText={() => {}}
-              text={''}
-              height={'10%'}
-              width={'100%'}
+              text={'Apple'}
+              onChangeText={function (text: string): void {
+                return console.log(text)
+              }}
             />
-          </View>
-        </View>
+          }
+          disableRightComponent
+        />
         <Image source={require('../images/Saly-17.png')} style={styles.image} />
         <Text style={styles.largeTextStyle}>Item not found</Text>
 
