@@ -9,7 +9,7 @@ import React from 'react'
 import SearchBar from '../components/SearchBar'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import BackIcon from '../components/icons/BackIcon'
-export default function ItemNotFound({ itemList }: { itemList: any[] }) {
+export default function Search({ itemList }: { itemList: any[] }) {
   if (itemList.length == 0) {
     return (
       <View>
