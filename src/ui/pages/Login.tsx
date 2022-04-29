@@ -5,21 +5,21 @@ const Login = () => {
 return (
   <View style={styles.container}>
     <View style={styles.design} >
-      <Image style={{width:'100%',height:'20%'}} source={require('./src/ui/images/Welcom.png')} />
+      <Image style={{width:'100%',height:'20%'}} source={require('../images/Welcom.png')} />
       <Text style={styles.header}>Welcome back</Text>
     </View>
   
     <View style={styles.box} >
       <Text style={{fontFamily:'Raleway-SemiBold',fontSize:18,fontWeight:'bold',color:'#000000'}}>Login</Text>
       <View style={{flexDirection:'row',paddingTop:10}}>
-        <Image style={{width:20,height:20}} source={require('./src/ui/images/mail.png')} />
+        <Image style={{width:20,height:20}} source={require('../images/mail.png')} />
         <Text>  Email</Text>
       </View>
       <TextInput placeholder="rosina@company.com"/>
-      <Image style={{marginBottom:5,width:'95%'}} source={require('./src/ui/images/Line.png')} />
+      <Image style={{marginBottom:5,width:'95%'}} source={require('../images/Line.png')} />
 
       <View style={{flexDirection:'row',paddingTop:10}}>
-        <Image style={{width:20,height:20}} source={require('./src/ui/images/lock.jpg')} />
+        <Image style={{width:20,height:20}} source={require('../images/lock.jpg')} />
         <Text>  Password</Text>
       </View>
       <View style={{flexDirection:'row'}}>
@@ -28,7 +28,7 @@ return (
           <Text style={{color:'#5956E9'}}>Show</Text>
         </TouchableOpacity>
       </View>
-      <Image style={{marginBottom:5,width:'95%'}} source={require('./src/ui/images/Line.png')} />
+      <Image style={{marginBottom:5,width:'95%'}} source={require('../images/Line.png')} />
 
       <TouchableOpacity style={{paddingVertical:10,}}>
         <Text style={{color:'#5956E9',}}>Forget password?</Text>
