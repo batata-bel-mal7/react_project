@@ -31,7 +31,7 @@ return (
       <Image style={{marginBottom:5,width:'95%'}} source={require('../images/Line.png')} />
 
       <TouchableOpacity style={{paddingVertical:10,}}>
-        <Text style={{color:'#5956E9',}}>Forget password?</Text>
+        <Text style={{color:'#5956E9',}}>spelling password?</Text>
       </TouchableOpacity>
 
       <Button
