@@ -5,8 +5,6 @@ import { TapGestureHandler, TextInput } from 'react-native-gesture-handler'
 type search = {
   text: string
   onChangeText: (text: string) => void
-  width: number
-  height: number
 }
 const searchImage: string = '../images/Search.png'
 export default function SearchBar({ text, onChangeText }: search) {
