@@ -157,22 +157,6 @@ const Login = () => {
           </Text>
         </TouchableOpacity>
       </View>
-<<<<<<< HEAD
-=======
-      <Image style={{marginBottom:5,width:'95%'}} source={require('../images/Line.png')} />
-
-      <TouchableOpacity style={{paddingVertical:10,}}>
-        <Text style={{color:'#5956E9',}}>spelling password?</Text>
-      </TouchableOpacity>
-
-      <Button
-        title="Login"
-        color="#5956E9"
-      />
-      <TouchableOpacity style={{paddingVertical:10,}}>
-        <Text style={{color:'#5956E9',alignSelf:'center'}}>Create Account</Text>
-      </TouchableOpacity>
->>>>>>> ad63f06 (Edit path images in login screen)
     </View>
   )
 }
