@@ -1,6 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import {
   TouchableOpacity,
   StyleSheet,
@@ -14,11 +14,14 @@ import EmailIcon from '../components/icons/EmailIcon'
 import LockIcon from '../components/icons/LockIcon'
 import LargeBottomButton from '../components/LargeBottomButton'
 import LoginFormField from '../components/LoginFormField'
+
+type FormValues = {
+  email: string
+  password: string
+}
 const Login = () => {
   const { loginWithEmailAndPassword } = useLogin()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  //Todo: form validation using react form hook
+  const { handleSubmit, control } = useForm<FormValues>()
   useEffect(() => {
     //TODO: animate height of form
     const keyboardDidShowListener = Keyboard.addListener(
@@ -38,6 +41,10 @@ const Login = () => {
       keyboardDidHideListener.remove()
     }
   }, [])
+
+  const onSubmit = (data: any) => {
+    console.log(data)
+  }
   return (
     <View style={styles.container}>
       <View
@@ -60,27 +67,67 @@ const Login = () => {
 
       <View style={styles.box}>
         <Text style={styles.boxTitle}>Login</Text>
-        <LoginFormField
-          icon={<EmailIcon />}
-          label={'Email'}
-          placeHolder="ex: hello@world.com"
-          style={{
-            marginVertical: 10,
+        <Controller
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => {
+            return (
+              <LoginFormField
+                icon={<EmailIcon />}
+                label={'Email'}
+                placeHolder="ex: hello@world.com"
+                style={{
+                  marginVertical: 10,
+                }}
+                value={value}
+                onChangeText={onChange}
+                error={error?.message}
+              />
+            )
           }}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
+          rules={{
+            required: {
+              value: true,
+              message: 'Email is required',
+            },
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'invalid Email',
+            },
+          }}
+          name={'email'}
         />
-        <LoginFormField
-          icon={<LockIcon />}
-          label={'Password'}
-          isShowable
-          secureTextEntry
-          placeHolder="* * * * * *"
-          style={{
-            marginVertical: 10,
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => {
+            return (
+              <LoginFormField
+                icon={<LockIcon />}
+                label={'Password'}
+                placeHolder="ex: hello@world.com"
+                style={{
+                  marginVertical: 10,
+                }}
+                isShowable
+                secureTextEntry
+                value={value}
+                onChangeText={onChange}
+                error={error?.message}
+              />
+            )
           }}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
+          rules={{
+            required: {
+              value: true,
+              message: 'Password is required',
+            },
+            minLength: {
+              value: 6,
+              message: 'Password must be at least 6 characters',
+            },
+          }}
+          name={'password'}
         />
 
         <TouchableOpacity style={{ paddingVertical: 10 }}>
@@ -94,7 +141,9 @@ const Login = () => {
             width={'100%'}
             height={70}
             textColor={'#FFFFFF'}
-            onPress={() => loginWithEmailAndPassword(email, password)}
+            onPress={handleSubmit(({ email, password }) =>
+              loginWithEmailAndPassword(email, password)
+            )}
           />
         </View>
         <TouchableOpacity style={{ paddingVertical: 10 }}>
