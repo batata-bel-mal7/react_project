@@ -7,6 +7,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import ProfileIcon from '../components/icons/ProfileIcon'
 import Location from '../components/icons/Location'
 import Phone from '../components/icons/Phone'
+import CreditCards from '../components/CreditCards'
 
 type props = {
   name: string
@@ -59,6 +60,11 @@ export default function Checkout({
           </View>
         </View>
         <Text style={styles.infoText}>Payment Method</Text>
+        <View style={styles.box2}>
+          {creditCards.map((number) => (
+            <CreditCards number={number} />
+          ))}
+        </View>
       </ScrollView>
     </View>
   )
@@ -91,5 +97,10 @@ const styles = StyleSheet.create({
   box1Text: {
     marginHorizontal: '5%',
     color: 'black',
+  },
+  box2: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    marginVertical: '5%',
   },
 })
