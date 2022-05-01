@@ -21,6 +21,10 @@ export interface User {
 
 export type UserState = {
   user: FirebaseAuthTypes.User | null
+  firstName?: string
+  lastName?: string
+  roles?: role[]
+  image: string
   loading: boolean
   error: LoginError
 }
