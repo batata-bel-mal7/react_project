@@ -5,13 +5,6 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import storage from '@react-native-firebase/storage'
 
-export enum LoginError {
-  NO_ERROR = 0,
-  USER_NOT_FOUND = 'auth/user-not-found',
-  WRONG_PASSWORD = 'auth/wrong-password',
-  TOO_MANY_REQUESTS = 'auth/too-many-requests',
-}
-
 export type role = 'seller' | 'customer'
 
 export interface User {
@@ -19,6 +12,12 @@ export interface User {
   lastName: string
   profileImage: number
   roles: role[]
+}
+
+export enum LoginError {
+  NO_ERROR = 0,
+  USER_NOT_FOUND = 'auth/user-not-found',
+  WRONG_PASSWORD = 'auth/wrong-password',
 }
 
 export type UserState = {
