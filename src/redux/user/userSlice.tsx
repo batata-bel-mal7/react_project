@@ -5,7 +5,6 @@ import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import storage from '@react-native-firebase/storage'
 
-export type role = 'seller' | 'customer'
 
 export interface User {
   firstName: string
