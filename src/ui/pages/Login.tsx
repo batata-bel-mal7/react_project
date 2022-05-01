@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {
   TouchableOpacity,
   StyleSheet,
@@ -9,11 +9,15 @@ import {
   Keyboard,
   Image,
 } from 'react-native'
+import useLogin from '../../hooks/useLogin'
 import EmailIcon from '../components/icons/EmailIcon'
 import LockIcon from '../components/icons/LockIcon'
 import LargeBottomButton from '../components/LargeBottomButton'
 import LoginFormField from '../components/LoginFormField'
 const Login = () => {
+  const { loginWithEmailAndPassword } = useLogin()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   //Todo: form validation using react form hook
   useEffect(() => {
     //TODO: animate height of form
@@ -63,6 +67,8 @@ const Login = () => {
           style={{
             marginVertical: 10,
           }}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         />
         <LoginFormField
           icon={<LockIcon />}
@@ -73,6 +79,8 @@ const Login = () => {
           style={{
             marginVertical: 10,
           }}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
         />
 
         <TouchableOpacity style={{ paddingVertical: 10 }}>
@@ -86,6 +94,7 @@ const Login = () => {
             width={'100%'}
             height={70}
             textColor={'#FFFFFF'}
+            onPress={() => loginWithEmailAndPassword(email, password)}
           />
         </View>
         <TouchableOpacity style={{ paddingVertical: 10 }}>
