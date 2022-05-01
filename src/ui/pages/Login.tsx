@@ -21,7 +21,11 @@ type FormValues = {
   password: string
 }
 const Login = () => {
+<<<<<<< HEAD
   const { loginWithEmailAndPassword, loading, error: loginError } = useLogin()
+=======
+  const { loginWithEmailAndPassword, loading } = useLogin()
+>>>>>>> 736f850 (wire loading state to login page)
   const { handleSubmit, control } = useForm<FormValues>()
   useEffect(() => {
     //TODO: animate height of form
