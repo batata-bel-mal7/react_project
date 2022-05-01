@@ -1,23 +1,14 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { FirebaseAuthTypes } from '@react-native-firebase/auth'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
+import auth from '@react-native-firebase/auth'
 
-export type role = 'admin' | 'user'
-export type bankCard = {
-  cardNumber: string
-  cardHolder: string | null
-  cardExpiration: string | null
-}
 export type UserState = {
-  name: string | null
-  email: string | null
-  isLoggedIn: boolean
+  user: FirebaseAuthTypes.User | null
 }
 
 const initialState: UserState = {
-  // todo add missing fields from firebase
-  name: null,
-  email: null,
-  isLoggedIn: false,
+  user: null,
 }
 
 const loginWithEmailAndPassword = createAsyncThunk(
@@ -28,50 +19,38 @@ const loginWithEmailAndPassword = createAsyncThunk(
   }: {
     email: string
     password: string
-  }): Promise<UserState> => {
-    const user = {
-      name: password,
-      email: email,
-      isLoggedIn: true,
-    }
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(user)
-      }, 2000)
-    })
+  }): Promise<void> => {
+    await auth().signInWithEmailAndPassword(email, password)
+    return
   }
 )
 
-const logout = createAsyncThunk('user/Logout', async (): Promise<UserState> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(initialState)
-    }, 2000)
-  })
+const logout = createAsyncThunk('user/Logout', async (): Promise<void> => {
+  await auth().signOut()
+  return
 })
+
 export const userSlice = createSlice({
   name: 'networkInfo',
   initialState,
-  reducers: {},
+  reducers: {
+    updateUser: (state) => {
+      state.user = auth().currentUser
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(
-        loginWithEmailAndPassword.fulfilled,
-        (state, action: PayloadAction<UserState>) => {
-          state.name = action.payload.name
-          state.email = action.payload.email
-          state.isLoggedIn = action.payload.isLoggedIn
-        }
-      )
-      .addCase(logout.fulfilled, (state, action: PayloadAction<UserState>) => {
-        state.name = action.payload.name
-        state.email = action.payload.email
-        state.isLoggedIn = action.payload.isLoggedIn
+      .addCase(loginWithEmailAndPassword.fulfilled, (state) => {
+        state.user = auth().currentUser
+      })
+      .addCase(logout.fulfilled, () => {
+        return initialState
       })
   },
 })
 
 export { loginWithEmailAndPassword, logout }
+export const { updateUser } = userSlice.actions
 export const selectUser = (state: RootState) => state.user
 
 export default userSlice.reducer

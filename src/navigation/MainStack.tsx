@@ -34,10 +34,10 @@ const MainStack = ({
     >
       {netinfo.isInternetReachable ? (
         <>
-          {user.isLoggedIn === false && (
+          {user.user === null && (
             <Stack.Screen name="Splash" component={SplashScreen} />
           )}
-          {user.isLoggedIn ? (
+          {user.user ? (
             <Stack.Screen name="DrawerStack" component={DrawerStack} />
           ) : (
             <Stack.Screen name="Login" component={Login} />
