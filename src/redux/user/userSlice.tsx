@@ -7,6 +7,7 @@ export enum LoginError {
   NO_ERROR = 0,
   USER_NOT_FOUND = 'auth/user-not-found',
   WRONG_PASSWORD = 'auth/wrong-password',
+  TOO_MANY_REQUESTS = 'auth/too-many-requests',
 }
 
 export type UserState = {
@@ -62,7 +63,6 @@ export const userSlice = createSlice({
       state.error = action.payload.error
         ? (action.payload.error.code as LoginError)
         : LoginError.NO_ERROR
-      console.log(state.error)
     },
   },
 })
