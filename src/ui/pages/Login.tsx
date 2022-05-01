@@ -8,6 +8,7 @@ import {
   View,
   Keyboard,
   Image,
+  Alert,
 } from 'react-native'
 import useLogin from '../../hooks/useLogin'
 import EmailIcon from '../components/icons/EmailIcon'
@@ -20,7 +21,7 @@ type FormValues = {
   password: string
 }
 const Login = () => {
-  const { loginWithEmailAndPassword, loading } = useLogin()
+  const { loginWithEmailAndPassword, loading, error: loginError } = useLogin()
   const { handleSubmit, control } = useForm<FormValues>()
   useEffect(() => {
     //TODO: animate height of form
@@ -41,6 +42,13 @@ const Login = () => {
       keyboardDidHideListener.remove()
     }
   }, [])
+
+  //TODO: remve this
+  useEffect(() => {
+    if (loginError) {
+      Alert.alert(loginError)
+    }
+  })
 
   return (
     <View style={styles.container}>
