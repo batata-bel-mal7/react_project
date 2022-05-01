@@ -7,6 +7,7 @@ import {
 
 const useLogin = () => {
   const user = useSelector(selectUser)
+  const loading = user.loading
   const appDispatch = useDispatch()
 
   const loginWithEmailAndPassword = (email: string, password: string) => {
@@ -17,7 +18,7 @@ const useLogin = () => {
     appDispatch(logoutEvent() as any)
   }
 
-  return { loginWithEmailAndPassword, logout, user }
+  return { loginWithEmailAndPassword, logout, loading, user }
 }
 
 export default useLogin
