@@ -10,6 +10,15 @@ export enum LoginError {
   TOO_MANY_REQUESTS = 'auth/too-many-requests',
 }
 
+export type role = 'seller' | 'customer'
+
+export interface User {
+  firstName: string
+  lastName: string
+  profileImage: number
+  roles: role[]
+}
+
 export type UserState = {
   user: FirebaseAuthTypes.User | null
   loading: boolean
