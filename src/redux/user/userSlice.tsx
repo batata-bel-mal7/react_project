@@ -38,15 +38,6 @@ export const userSlice = createSlice({
       state.user = auth().currentUser
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(loginWithEmailAndPassword.fulfilled, (state) => {
-        state.user = auth().currentUser
-      })
-      .addCase(logout.fulfilled, () => {
-        return initialState
-      })
-  },
 })
 
 export { loginWithEmailAndPassword, logout }
