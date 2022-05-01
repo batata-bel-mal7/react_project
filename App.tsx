@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -13,23 +13,37 @@ import {
   selectNetworkInfo,
   setNetworkInfo,
 } from './src/redux/networkInfo/networkInfoSlice'
+import { selectUser, updateUser } from './src/redux/user/userSlice'
+import auth from '@react-native-firebase/auth'
 
 const App = () => {
   const appDispatch = useAppDispatch()
   const netinfo = useSelector(selectNetworkInfo)
+  const user = useSelector(selectUser)
+  const [initialized, setInitialized] = useState(true)
+
   useEffect(() => {
     appDispatch(initNetInfo())
-    const removeEventListener = NetInfo.addEventListener((state) => {
+    const netInfoEventListener = NetInfo.addEventListener((state) => {
       appDispatch(setNetworkInfo(state))
     })
+    const authStateEventListener = auth().onAuthStateChanged(() => {
+      appDispatch(updateUser())
+      if (initialized) {
+        setInitialized(false)
+      }
+    })
     return () => {
-      removeEventListener()
+      netInfoEventListener()
+      authStateEventListener()
     }
-  }, [appDispatch])
-  if (!netinfo.initialized) {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (!netinfo.initialized || initialized) {
     return null
   }
-  return <MainStack netinfo={netinfo} />
+  return <MainStack netinfo={netinfo} user={user} />
 }
 
 const Main = () => {

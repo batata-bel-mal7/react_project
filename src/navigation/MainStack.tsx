@@ -4,10 +4,25 @@ import DrawerStack from './DrawerStack'
 import NoIternet from '../ui/pages/NoInternet'
 import { NetworkInfoState } from '../redux/networkInfo/networkInfoSlice'
 import SplashScreen from '../ui/pages/SplashScreen'
+import Login from '../ui/pages/Login'
+import { UserState } from '../redux/user/userSlice'
 
-const Stack = createStackNavigator()
+export type MainStackParamList = {
+  Splash: undefined
+  Login: undefined
+  DrawerStack: undefined
+  NoIternet: undefined
+}
 
-const MainStack = ({ netinfo }: { netinfo: NetworkInfoState }) => {
+const Stack = createStackNavigator<MainStackParamList>()
+
+const MainStack = ({
+  netinfo,
+  user,
+}: {
+  netinfo: NetworkInfoState
+  user: UserState
+}) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -19,8 +34,14 @@ const MainStack = ({ netinfo }: { netinfo: NetworkInfoState }) => {
     >
       {netinfo.isInternetReachable ? (
         <>
-          <Stack.Screen name="Splash" component={SplashScreen} />
-          <Stack.Screen name="DrawerStack" component={DrawerStack} />
+          {user.user === null && (
+            <Stack.Screen name="Splash" component={SplashScreen} />
+          )}
+          {user.user ? (
+            <Stack.Screen name="DrawerStack" component={DrawerStack} />
+          ) : (
+            <Stack.Screen name="Login" component={Login} />
+          )}
         </>
       ) : (
         <Stack.Screen name="NoIternet" component={NoIternet} />

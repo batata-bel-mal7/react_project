@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, ViewStyle } from 'react-native'
 import React from 'react'
 import Ripple from './Ripple'
+import Rive from 'rive-react-native'
 
 type buttonProps = {
   text: string
@@ -8,6 +9,8 @@ type buttonProps = {
   width: ViewStyle['width']
   height: ViewStyle['height']
   textColor: string
+  onPress: () => void
+  loading?: boolean
 }
 export default function LargeBottomButton({
   text,
@@ -15,6 +18,8 @@ export default function LargeBottomButton({
   width,
   height,
   textColor,
+  onPress,
+  loading,
 }: buttonProps) {
   const styles = StyleSheet.create({
     LargeButton: {
@@ -29,15 +34,36 @@ export default function LargeBottomButton({
       color: textColor,
       alignSelf: 'center',
       fontSize: 18,
-      fontFamily: 'Raleway',
-      fontWeight: '700',
+      fontFamily: 'Raleway-Bold',
     },
   })
-
-  return (
-    <Ripple style={styles.LargeButton}>
+  return loading ? (
+    <View style={[styles.LargeButton, { overflow: 'hidden' }]}>
       <View>
-        <Text style={styles.textStyle}>{text}</Text>
+        <Rive
+          resourceName={'loader'}
+          style={{
+            height: 100,
+          }}
+        />
+      </View>
+    </View>
+  ) : (
+    <Ripple
+      style={[styles.LargeButton, { overflow: 'hidden' }]}
+      onTap={() => (loading ? {} : onPress())}
+    >
+      <View>
+        {loading ? (
+          <Rive
+            resourceName={'loader'}
+            style={{
+              height: 100,
+            }}
+          />
+        ) : (
+          <Text style={styles.textStyle}>{text}</Text>
+        )}
       </View>
     </Ripple>
   )
