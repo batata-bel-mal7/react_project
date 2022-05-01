@@ -13,10 +13,12 @@ import {
   selectNetworkInfo,
   setNetworkInfo,
 } from './src/redux/networkInfo/networkInfoSlice'
+import { selectUser } from './src/redux/user/userSlice'
 
 const App = () => {
   const appDispatch = useAppDispatch()
   const netinfo = useSelector(selectNetworkInfo)
+  const user = useSelector(selectUser)
   useEffect(() => {
     appDispatch(initNetInfo())
     const removeEventListener = NetInfo.addEventListener((state) => {
@@ -29,7 +31,7 @@ const App = () => {
   if (!netinfo.initialized) {
     return null
   }
-  return <MainStack netinfo={netinfo} />
+  return <MainStack netinfo={netinfo} user={user} />
 }
 
 const Main = () => {
