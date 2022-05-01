@@ -120,8 +120,7 @@ export const userSlice = createSlice({
   },
 })
 
-export { loginWithEmailAndPassword, logout }
-export const { updateUser } = userSlice.actions
+export { loginWithEmailAndPassword, logout, initUser }
 export const selectUser = (state: RootState) => state.user
 
 export default userSlice.reducer
