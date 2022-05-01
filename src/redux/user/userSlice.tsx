@@ -1,7 +1,9 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
+import storage from '@react-native-firebase/storage'
 
 export enum LoginError {
   NO_ERROR = 0,
@@ -33,6 +35,23 @@ const initialState: UserState = {
   user: null,
   loading: false,
   error: LoginError.NO_ERROR,
+}
+
+async function fetchUser(): Promise<UserState> {
+  const newUser = auth().currentUser
+  let state = {} as UserState
+  state.loading = false
+  state.user = newUser
+  const userRef = firestore().collection<User>('users').doc(newUser?.uid)
+  const user = (await userRef.get()).data()
+  state.firstName = user?.firstName
+  state.lastName = user?.lastName
+  state.roles = user?.roles
+  if (user?.profileImage) {
+    const imageRef = storage().ref(`/profileImages/${newUser?.uid}.jpg`)
+    state.image = await imageRef.getDownloadURL()
+  }
+  return state
 }
 
 const loginWithEmailAndPassword = createAsyncThunk(
