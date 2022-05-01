@@ -1336,10 +1336,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-14.8.1.tgz#51e1910411df58a6915ea92cfca9a14e8d8d10f3"
   integrity sha512-w4zJ71avBWn0GzwTnHwhCmIU3je0NtvcVqFKr1BW6/Z1qgkyJUkRh/AQaF42lRyVpoqfLfBu3uGS/AKZgH/TCA==
 
-"@react-native-firebase/storage@^14.8.1":
-  version "14.8.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-14.8.1.tgz#4fa1b8c3c28af59f516974501e0add4e05c6a33a"
-  integrity sha512-QePfMGVktlP7gujojP4Dao+NYHtY8/AVhDoz48WY3OnTpUuXmVOr/4IDZbopgthpf7ZI/D/inWwkkimZOyenEA==
+"@react-native-firebase/storage@^14.9.1":
+  version "14.9.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-14.9.1.tgz#1e77301bb6263232c1026b36f200c99ae860e827"
+  integrity sha512-6tBCv3h/eYG2yQUzYqyZIP7yCMcwwpYxKiWnbBShkpAQ6INssC5l1I5x0jSCiQvpWWdKEPlTEF46Bs5eyEKaYg==
 
 "@react-native-masked-view/masked-view@^0.2.6":
   version "0.2.6"
