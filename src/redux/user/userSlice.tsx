@@ -31,7 +31,7 @@ const logout = createAsyncThunk('user/Logout', async (): Promise<void> => {
 })
 
 export const userSlice = createSlice({
-  name: 'networkInfo',
+  name: 'user',
   initialState,
   reducers: {
     updateUser: (state) => {
