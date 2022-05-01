@@ -31,8 +31,7 @@ export default function LargeBottomButton({
       color: textColor,
       alignSelf: 'center',
       fontSize: 18,
-      fontFamily: 'Raleway',
-      fontWeight: '700',
+      fontFamily: 'Raleway-Bold',
     },
   })
 
