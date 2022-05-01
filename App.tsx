@@ -21,26 +21,25 @@ const App = () => {
   const netinfo = useSelector(selectNetworkInfo)
   const user = useSelector(selectUser)
   const [initialized, setInitialized] = useState(true)
-  const handleAuthStateChanged = () => {
-    appDispatch(updateUser())
-    if (initialized) {
-      setInitialized(false)
-    }
-  }
+
   useEffect(() => {
     appDispatch(initNetInfo())
     const netInfoEventListener = NetInfo.addEventListener((state) => {
       appDispatch(setNetworkInfo(state))
     })
-    const authStateEventListener = auth().onAuthStateChanged(
-      handleAuthStateChanged
-    )
+    const authStateEventListener = auth().onAuthStateChanged(() => {
+      appDispatch(updateUser())
+      if (initialized) {
+        setInitialized(false)
+      }
+    })
     return () => {
       netInfoEventListener()
       authStateEventListener()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   if (!netinfo.initialized || initialized) {
     return null
   }
