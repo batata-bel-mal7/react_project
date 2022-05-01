@@ -1,10 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
+import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { MainStackParamList } from '../../navigation/MainStack'
 import LargeBottomButton from '../components/LargeBottomButton'
 
 const ScreenHighet = Dimensions.get('window').height
-const SplashScreen = () => {
+const SplashScreen = ({
+  navigation,
+}: StackScreenProps<MainStackParamList, 'Splash'>) => {
   return (
     <View style={styles.container}>
       <Text
@@ -41,6 +45,7 @@ const SplashScreen = () => {
           width={'100%'}
           height={ScreenHighet * 0.09}
           textColor={'#5956E9'}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </View>
