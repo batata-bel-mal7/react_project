@@ -55,20 +55,10 @@ async function fetchUser(): Promise<UserState> {
 }
 
 const loginWithEmailAndPassword = createAsyncThunk(
-  'user/loginWithEmailAndPasswork',
-  async ({
-    email,
-    password,
-  }: {
-    email: string
-    password: string
-  }): Promise<{ error: any }> => {
-    try {
+  'user/loginWithEmailAndPassword',
+  async ({ email, password }: { email: string; password: string }) => {
       await auth().signInWithEmailAndPassword(email, password)
-      return { error: null }
-    } catch (error) {
-      return { error }
-    }
+    return await fetchUser()
   }
 )
 
@@ -77,6 +67,12 @@ const logout = createAsyncThunk('user/Logout', async (): Promise<void> => {
   return
 })
 
+const initUser = createAsyncThunk(
+  'user/initUser',
+  async (): Promise<UserState> => {
+    return await fetchUser()
+  }
+)
 export const userSlice = createSlice({
   name: 'user',
   initialState,
