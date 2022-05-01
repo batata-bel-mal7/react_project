@@ -1331,10 +1331,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-14.8.1.tgz#074420b9f94a22001bcd6ef34fa41eab10e3c332"
   integrity sha512-gbjVNJvgsxawo3O3E216xWlN2xjd93SUSXHA0rrmMnrVvaCbdkC1y7QCScMFCV1wWT0IwQcH4PX2OKfyzlIQaQ==
 
-"@react-native-firebase/firestore@^14.8.1":
-  version "14.8.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-14.8.1.tgz#51e1910411df58a6915ea92cfca9a14e8d8d10f3"
-  integrity sha512-w4zJ71avBWn0GzwTnHwhCmIU3je0NtvcVqFKr1BW6/Z1qgkyJUkRh/AQaF42lRyVpoqfLfBu3uGS/AKZgH/TCA==
+"@react-native-firebase/firestore@^14.9.1":
+  version "14.9.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-14.9.1.tgz#1dee9c1a31204194d3feae1f9a6e83384c2481e0"
+  integrity sha512-ZrrO0oy1XWZUn6ShtVJABy/SUs90io/faKP3mJ6iE1hq99OJy8NjtEFQUelGVzZ4dRTTv3kRH8En8KKopdvgHw==
 
 "@react-native-firebase/storage@^14.9.1":
   version "14.9.1"
