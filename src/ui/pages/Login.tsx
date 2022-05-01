@@ -20,7 +20,7 @@ type FormValues = {
   password: string
 }
 const Login = () => {
-  const { loginWithEmailAndPassword } = useLogin()
+  const { loginWithEmailAndPassword, loading } = useLogin()
   const { handleSubmit, control } = useForm<FormValues>()
   useEffect(() => {
     //TODO: animate height of form
@@ -61,7 +61,6 @@ const Login = () => {
         />
         <Text style={styles.header}>Welcome back</Text>
       </View>
-
       <View style={styles.box}>
         <Text style={styles.boxTitle}>Login</Text>
         <Controller
@@ -141,6 +140,7 @@ const Login = () => {
             onPress={handleSubmit(({ email, password }) =>
               loginWithEmailAndPassword(email, password)
             )}
+            loading={loading}
           />
         </View>
         <TouchableOpacity style={{ paddingVertical: 10 }}>
