@@ -13,8 +13,7 @@ import {
   selectNetworkInfo,
   setNetworkInfo,
 } from './src/redux/networkInfo/networkInfoSlice'
-import { selectUser, updateUser } from './src/redux/user/userSlice'
-import auth from '@react-native-firebase/auth'
+import { selectUser, initUser } from './src/redux/user/userSlice'
 
 const App = () => {
   const appDispatch = useAppDispatch()
@@ -27,15 +26,13 @@ const App = () => {
     const netInfoEventListener = NetInfo.addEventListener((state) => {
       appDispatch(setNetworkInfo(state))
     })
-    const authStateEventListener = auth().onAuthStateChanged(() => {
-      appDispatch(updateUser())
-      if (initialized) {
-        setInitialized(false)
-      }
-    })
+    if (initialized) {
+      appDispatch(initUser())
+      setInitialized(false)
+    }
+
     return () => {
       netInfoEventListener()
-      authStateEventListener()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
