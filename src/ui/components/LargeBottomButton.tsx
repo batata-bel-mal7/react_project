@@ -8,6 +8,7 @@ type buttonProps = {
   width: ViewStyle['width']
   height: ViewStyle['height']
   textColor: string
+  onPress: () => void
 }
 export default function LargeBottomButton({
   text,
@@ -15,6 +16,7 @@ export default function LargeBottomButton({
   width,
   height,
   textColor,
+  onPress,
 }: buttonProps) {
   const styles = StyleSheet.create({
     LargeButton: {
@@ -35,7 +37,7 @@ export default function LargeBottomButton({
   })
 
   return (
-    <Ripple style={styles.LargeButton}>
+    <Ripple style={styles.LargeButton} onTap={onPress}>
       <View>
         <Text style={styles.textStyle}>{text}</Text>
       </View>
