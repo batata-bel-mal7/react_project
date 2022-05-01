@@ -1,7 +1,7 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import HomeStack from './HomeStack'
-import DrawerContent from '../ui/components/DrawerContent'
+import DrawerContent from '../ui/pages/DrawerContent'
 
 const Drawer = createDrawerNavigator()
 
