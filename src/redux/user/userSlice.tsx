@@ -24,7 +24,7 @@ export type UserState = {
   firstName?: string
   lastName?: string
   roles?: role[]
-  image: string
+  image?: string
   loading: boolean
   error: LoginError
 }
