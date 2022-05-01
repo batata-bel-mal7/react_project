@@ -57,7 +57,7 @@ async function fetchUser(): Promise<UserState> {
 const loginWithEmailAndPassword = createAsyncThunk(
   'user/loginWithEmailAndPassword',
   async ({ email, password }: { email: string; password: string }) => {
-      await auth().signInWithEmailAndPassword(email, password)
+    await auth().signInWithEmailAndPassword(email, password)
     return await fetchUser()
   }
 )
@@ -83,7 +83,7 @@ export const userSlice = createSlice({
     },
     [logout.pending.type]: (state) => {
       state.loading = true
-  },
+    },
     [initUser.pending.type]: (state) => {
       state.loading = true
     },
