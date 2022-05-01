@@ -76,21 +76,46 @@ const initUser = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    updateUser: (state) => {
-      state.user = auth().currentUser
-      state.loading = false
-    },
-  },
+  reducers: {},
   extraReducers: {
     [loginWithEmailAndPassword.pending.type]: (state) => {
       state.loading = true
     },
-    [loginWithEmailAndPassword.fulfilled.type]: (state, action) => {
+    [logout.pending.type]: (state) => {
+      state.loading = true
+  },
+    [initUser.pending.type]: (state) => {
+      state.loading = true
+    },
+    [initUser.fulfilled.type]: (state, action: PayloadAction<UserState>) => {
       state.loading = false
-      state.error = action.payload.error
-        ? (action.payload.error.code as LoginError)
-        : LoginError.NO_ERROR
+      state.user = action.payload.user
+      state.firstName = action.payload.firstName
+      state.lastName = action.payload.lastName
+      state.roles = action.payload.roles
+      state.image = action.payload.image
+      state.error = LoginError.NO_ERROR
+    },
+    [loginWithEmailAndPassword.fulfilled.type]: (
+      state,
+      action: PayloadAction<UserState>
+    ) => {
+      console.log('loginWithEmailAndPassword.fulfilled', action.payload)
+      state.loading = false
+      state.user = action.payload.user
+      state.firstName = action.payload.firstName
+      state.lastName = action.payload.lastName
+      state.roles = action.payload.roles
+      state.image = action.payload.image
+      state.error = LoginError.NO_ERROR
+    },
+    [logout.fulfilled.type]: (state) => {
+      state.user = null
+      state.firstName = ''
+      state.lastName = ''
+      state.roles = []
+      state.image = ''
+      state.loading = false
     },
   },
 })
