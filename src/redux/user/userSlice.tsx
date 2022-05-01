@@ -5,10 +5,12 @@ import auth from '@react-native-firebase/auth'
 
 export type UserState = {
   user: FirebaseAuthTypes.User | null
+  loading: boolean
 }
 
 const initialState: UserState = {
   user: null,
+  loading: false,
 }
 
 const loginWithEmailAndPassword = createAsyncThunk(
@@ -36,6 +38,12 @@ export const userSlice = createSlice({
   reducers: {
     updateUser: (state) => {
       state.user = auth().currentUser
+      state.loading = false
+    },
+  },
+  extraReducers: {
+    [loginWithEmailAndPassword.pending.type]: (state) => {
+      state.loading = true
     },
   },
 })
