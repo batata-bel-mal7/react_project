@@ -32,7 +32,8 @@
     "react-native-svg": "^12.3.0",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
-    "redux-flipper": "^2.0.1"
+    "redux-flipper": "^2.0.1",
+    "rive-react-native": "^2.1.37"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
