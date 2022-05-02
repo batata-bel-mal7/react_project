@@ -1,18 +1,18 @@
-/* eslint-disable react-native/no-inline-styles */
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ErrorButton from '../components/ErrorButton'
-import BackIcon from '../components/icons/BackIcon'
 import Header from '../components/Header'
 import HeaderTitle from '../components/HeaderTitle'
+import HeaderBackButton from '../components/HeaderBackButton'
 
 const ScreenHighet = Dimensions.get('window').height
-export default function FavouritePage({ itemList }: { itemList: any[] }) {
+export default function FavouritePage({ navigation }: any) {
+  const itemList = []
   if (itemList.length === 0) {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <Header
-          leftComponent={<BackIcon />}
+          leftComponent={<HeaderBackButton navigation={navigation} />}
           middleComponent={<HeaderTitle title="Favorites" />}
         />
         <View style={styles.container}>
