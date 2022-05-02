@@ -11,15 +11,31 @@ import LogoutIcon from '../components/icons/LogoutIcon'
 import ProfileIcon from '../components/icons/ProfileIcon'
 import SettingsIcon from '../components/icons/SettingsIcon'
 
-const DrawerContent = () => {
+const DrawerContent = ({ navigation }: any) => {
   const { logout } = useLogin()
   return (
     <View style={styles.drawer}>
-      <DrawerItem onPress={() => {}} text="Profile" icon={<ProfileIcon />} />
+      <DrawerItem
+        onPress={() => navigation.navigate('Profile')}
+        text="Profile"
+        icon={<ProfileIcon />}
+      />
       <Divider />
-      <DrawerItem onPress={() => {}} text="My orders" icon={<BuyIcon />} />
+      <DrawerItem
+        onPress={() => {
+          navigation.navigate('Orders')
+        }}
+        text="My orders"
+        icon={<BuyIcon />}
+      />
       <Divider />
-      <DrawerItem onPress={() => {}} text="Favorite" icon={<HeartIcon />} />
+      <DrawerItem
+        onPress={() => {
+          navigation.navigate('Favorite')
+        }}
+        text="Favorite"
+        icon={<HeartIcon />}
+      />
       <Divider />
       <DrawerItem onPress={() => {}} text="Delivery" icon={<BagIcon />} />
       <Divider />

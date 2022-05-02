@@ -1,18 +1,18 @@
-/* eslint-disable react-native/no-inline-styles */
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ErrorButton from '../components/ErrorButton'
 import Header from '../components/Header'
-import BackIcon from '../components/icons/BackIcon'
 import HeaderTitle from '../components/HeaderTitle'
+import HeaderBackButton from '../components/HeaderBackButton'
 
 const ScreenHighet = Dimensions.get('window').height
-export default function HistoryPage({ itemList }: { itemList: any[] }) {
+export default function HistoryPage({ navigation }: any) {
+  const itemList = []
   if (itemList.length === 0) {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <Header
-          leftComponent={<BackIcon />}
+          leftComponent={<HeaderBackButton navigation={navigation} />}
           middleComponent={<HeaderTitle title="order history" />}
         />
         <View style={styles.container}>
