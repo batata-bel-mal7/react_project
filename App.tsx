@@ -14,13 +14,14 @@ import {
   setNetworkInfo,
 } from './src/redux/networkInfo/networkInfoSlice'
 import { selectUser, initUser } from './src/redux/user/userSlice'
+import auth from '@react-native-firebase/auth'
 
 const App = () => {
   const appDispatch = useAppDispatch()
   const netinfo = useSelector(selectNetworkInfo)
   const user = useSelector(selectUser)
-  const [initialized, setInitialized] = useState(true)
   const [netInfoInit, setNetInfoInit] = useState(true)
+  const [userInit, setUserInit] = useState(true)
 
   useEffect(() => {
     appDispatch(initNetInfo())
@@ -31,18 +32,22 @@ const App = () => {
       }
       appDispatch(setNetworkInfo(state))
     })
-    if (initialized) {
+    appDispatch(initUser())
+    const authListener = auth().onAuthStateChanged(() => {
+      if (userInit) {
+        setUserInit(false)
+        return
+      }
       appDispatch(initUser())
-      setInitialized(false)
-    }
-
+    })
     return () => {
       netInfoEventListener()
+      authListener()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  if (!netinfo.initialized || initialized) {
+  if (!netinfo.initialized || !user.initialized) {
     return null
   }
   return <MainStack netinfo={netinfo} user={user} />
