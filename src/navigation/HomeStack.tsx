@@ -7,6 +7,9 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated'
 import { StyleSheet } from 'react-native'
+import Profile from '../ui/pages/Profile'
+import HistoryPage from '../ui/pages/OrderHistory'
+import FavouritePage from '../ui/pages/Favorites'
 
 const Stack = createStackNavigator()
 
@@ -43,7 +46,9 @@ const HomeStack = () => {
           },
         }}
       >
-        <Stack.Screen name="OnBoarding" component={Home} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Orders" component={HistoryPage} />
+        <Stack.Screen name="Favorite" component={FavouritePage} />
         <Stack.Screen name="Login" component={Home} />
         <Stack.Screen name="ResetPassword" component={Home} />
         <Stack.Screen name="SignUp" component={Home} />
