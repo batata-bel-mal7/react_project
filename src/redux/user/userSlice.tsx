@@ -103,7 +103,6 @@ export const userSlice = createSlice({
       state,
       action: PayloadAction<UserState>
     ) => {
-      console.log('loginWithEmailAndPassword.fulfilled', action.payload)
       state.loading = false
       state.user = action.payload.user
       state.firstName = action.payload.firstName
