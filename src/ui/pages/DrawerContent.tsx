@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   drawerCoverHack: {
     position: 'absolute',
-    left: '125%',
+    left: '120%',
     top: 0,
     height: '200%',
     width: '140%',
