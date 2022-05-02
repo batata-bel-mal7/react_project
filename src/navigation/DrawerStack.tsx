@@ -8,10 +8,13 @@ const Drawer = createDrawerNavigator()
 export default () => {
   return (
     <Drawer.Navigator
-      drawerContent={() => {
-        return <DrawerContent />
+      drawerContent={(props) => {
+        return <DrawerContent {...props} />
       }}
       screenOptions={{
+        gestureHandlerProps: {
+          enabled: false,
+        },
         headerShown: false,
         drawerType: 'back',
         overlayColor: 'transparent',
