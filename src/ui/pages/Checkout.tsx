@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import BackIcon from '../components/icons/BackIcon'
 import HeaderTitle from '../components/HeaderTitle'
@@ -8,6 +8,8 @@ import ProfileIcon from '../components/icons/ProfileIcon'
 import Location from '../components/icons/Location'
 import Phone from '../components/icons/Phone'
 import CreditCards from '../components/CreditCards'
+import Checkbox from '../components/Checkbox'
+import Ripple from '../components/Ripple'
 
 type props = {
   name: string
@@ -16,15 +18,13 @@ type props = {
   creditCards: number[]
 }
 
-const masterCard: number[] = []
-const Visa: number[] = []
-const others: number[] = []
 export default function Checkout({
   name,
   address,
   number,
   creditCards,
 }: props) {
+  const [selected, setSelected] = useState(0)
   return (
     <View>
       <Header
@@ -61,8 +61,21 @@ export default function Checkout({
         </View>
         <Text style={styles.infoText}>Payment Method</Text>
         <View style={styles.box2}>
-          {creditCards.map((number) => (
-            <CreditCards number={number} />
+          {creditCards.map((number, index) => (
+            <Ripple
+              onTap={() => {
+                setSelected(index)
+              }}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                margin: '3%',
+                marginBottom: '1%',
+              }}
+            >
+              <Checkbox index={index} selected={selected} />
+              <CreditCards number={number} />
+            </Ripple>
           ))}
         </View>
       </ScrollView>
