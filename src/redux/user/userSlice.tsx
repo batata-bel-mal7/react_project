@@ -29,12 +29,14 @@ export type UserState = {
   image?: string
   loading: boolean
   error: LoginError
+  initialized: boolean
 }
 
 const initialState: UserState = {
   user: null,
   loading: false,
   error: LoginError.NO_ERROR,
+  initialized: false,
 }
 
 async function fetchUser(): Promise<UserState> {
@@ -95,6 +97,7 @@ export const userSlice = createSlice({
       state.roles = action.payload.roles
       state.image = action.payload.image
       state.error = LoginError.NO_ERROR
+      state.initialized = true
     },
     [loginWithEmailAndPassword.fulfilled.type]: (
       state,
