@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react'
 import { View } from 'react-native'
 
@@ -16,7 +15,6 @@ const Header = (props: HeaderProps) => {
         marginHorizontal: 20,
         flexDirection: 'row',
         minHeight: 80,
-        marginVertical: '3%',
         alignItems: 'center',
       }}
     >
