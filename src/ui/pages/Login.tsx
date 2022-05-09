@@ -50,6 +50,8 @@ const Login = () => {
     }
   })
 
+  const [show, setshow] = React.useState(true)
+
   return (
     <View style={styles.container}>
       <View
@@ -114,10 +116,11 @@ const Login = () => {
                   marginVertical: 10,
                 }}
                 isShowable
-                secureTextEntry
+                secureTextEntry={show}
                 value={value}
                 onChangeText={onChange}
                 error={error?.message}
+                show={() => setshow(!show)}
               />
             )
           }}
