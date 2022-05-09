@@ -82,7 +82,7 @@ const ForgotPassword = () => {
           </TouchableOpacity>
         </View>
         <LargeBottomButton
-          text={'Create account'}
+          text={'Confirm'}
           color={'#5956E9'}
           width={'100%'}
           height={50}
