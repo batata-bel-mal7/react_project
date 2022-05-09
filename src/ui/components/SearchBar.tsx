@@ -36,7 +36,6 @@ export default function SearchBar({ text, onChangeText }: search) {
       >
         <Image
           source={require(searchImage)}
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             alignSelf: 'center',
             marginLeft: 19,

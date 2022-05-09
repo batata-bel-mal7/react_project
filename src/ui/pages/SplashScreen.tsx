@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
