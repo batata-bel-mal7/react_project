@@ -20,7 +20,8 @@ const ProfileButton = ({
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
         overflow: 'hidden',
-        marginTop: 20,
+        alignItems: 'center',
+        marginTop: 10,
       }}
     >
       <View

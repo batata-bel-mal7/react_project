@@ -1,38 +1,49 @@
 import * as React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import {
+  Image,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from 'react-native'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../redux/user/userSlice'
 import Header from '../components/Header'
 import HeaderBackButton from '../components/HeaderBackButton'
+import HeaderTitle from '../components/HeaderTitle'
 import LocationIcon from '../components/icons/LocationIcon'
 import ProfileButton from '../components/ProfileButton'
 const Profile = ({ navigation }: any) => {
+  const window = useWindowDimensions()
   const user = useSelector(selectUser)
   return (
     <View style={styles.container}>
-      <Header leftComponent={<HeaderBackButton navigation={navigation} />} />
+      <Header
+        leftComponent={<HeaderBackButton navigation={navigation} />}
+        middleComponent={<HeaderTitle title={'profile'} />}
+      />
       <View style={{ flex: 1, marginHorizontal: 20 }}>
-        <Text
+        {/* <Text
           style={{
             fontFamily: 'Raleway-SemiBold',
-            fontSize: 34,
+            fontSize: 24,
             fontWeight: '800',
             color: '#000000',
-            paddingBottom: 30,
+            paddingBottom: 0,
           }}
         >
           My profile
-        </Text>
+        </Text> */}
         <View style={[styles.button, { marginTop: 40 }]}>
           <Image
             style={{
-              height: 100,
-              width: 100,
+              height: window.height * 0.1,
+              width: window.height * 0.1,
               alignSelf: 'center',
               borderRadius: 76,
               resizeMode: 'contain',
               paddingVertical: 20,
-              marginTop: -70,
+              marginTop: window.height * -0.06,
             }}
             source={{ uri: user.image }}
           />
@@ -48,7 +59,7 @@ const Profile = ({ navigation }: any) => {
           >
             {`${user.firstName} ${user.lastName}`}
           </Text>
-          <View style={{ flexDirection: 'row', marginTop: 10 }}>
+          <View style={{ flexDirection: 'row' }}>
             <LocationIcon style={{ marginHorizontal: 20 }} />
             <View>
               <Text style={styles.addressText}>Address: 43 cairo</Text>
@@ -60,33 +71,13 @@ const Profile = ({ navigation }: any) => {
         <ProfileButton
           text={'Edit Profile'}
           onPress={function (): void {
-            throw new Error('Function not implemented.')
+            // throw new Error('Function not implemented.')
           }}
         />
-        <ProfileButton
-          text="Shopping address"
-          onPress={function (): void {
-            throw new Error('Function not implemented.')
-          }}
-        />
-        <ProfileButton
-          text="Order History"
-          onPress={function (): void {
-            throw new Error('Function not implemented.')
-          }}
-        />
-        <ProfileButton
-          text="Cards"
-          onPress={function (): void {
-            throw new Error('Function not implemented.')
-          }}
-        />
-        <ProfileButton
-          text="Notifications"
-          onPress={function (): void {
-            throw new Error('Function not implemented.')
-          }}
-        />
+        <ProfileButton text="Shopping address" onPress={function (): void {}} />
+        <ProfileButton text="Order History" onPress={function (): void {}} />
+        <ProfileButton text="Cards" onPress={function (): void {}} />
+        <ProfileButton text="Notifications" onPress={function (): void {}} />
       </View>
     </View>
   )
