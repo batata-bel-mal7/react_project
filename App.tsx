@@ -20,16 +20,17 @@ const App = () => {
   const appDispatch = useAppDispatch()
   const netinfo = useSelector(selectNetworkInfo)
   const user = useSelector(selectUser)
-  const [netInfoInit, setNetInfoInit] = useState(true)
+  // const [netInfoInit, setNetInfoInit] = useState(true)
   const [userInit, setUserInit] = useState(true)
 
   useEffect(() => {
     appDispatch(initNetInfo())
     const netInfoEventListener = NetInfo.addEventListener((state) => {
-      if (netInfoInit) {
-        setNetInfoInit(false)
-        return
-      }
+      // if (netInfoInit) {
+      //   setNetInfoInit(false)
+      //   return
+      // }
+      // console.log('hello')
       appDispatch(setNetworkInfo(state))
     })
     appDispatch(initUser())
