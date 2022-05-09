@@ -1,7 +1,7 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import HomeStack from './HomeStack'
 import DrawerContent from '../ui/pages/DrawerContent'
+import TabStack from './TabStack'
 
 const Drawer = createDrawerNavigator()
 
@@ -29,7 +29,7 @@ export default () => {
       }}
       backBehavior="none"
     >
-      <Drawer.Screen name="HomeStack" component={HomeStack} />
+      <Drawer.Screen name="HomeStack" component={TabStack} />
     </Drawer.Navigator>
   )
 }
