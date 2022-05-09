@@ -4,7 +4,6 @@ import Svg, { Circle, Rect } from 'react-native-svg'
 import useLogin from '../../hooks/useLogin'
 import Divider from '../components/Divider'
 import DrawerItem from '../components/DrawerItem'
-import BagIcon from '../components/icons/BagIcon'
 import BuyIcon from '../components/icons/BuyIcon'
 import HeartIcon from '../components/icons/HeartIcon'
 import LogoutIcon from '../components/icons/LogoutIcon'
@@ -36,8 +35,6 @@ const DrawerContent = ({ navigation }: any) => {
         text="Favorite"
         icon={<HeartIcon />}
       />
-      <Divider />
-      <DrawerItem onPress={() => {}} text="Delivery" icon={<BagIcon />} />
       <Divider />
       <DrawerItem onPress={() => {}} text="Settings" icon={<SettingsIcon />} />
       <View style={styles.flex1} />
