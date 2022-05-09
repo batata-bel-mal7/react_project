@@ -10,6 +10,7 @@ import Phone from '../components/icons/Phone'
 import CreditCards from '../components/CreditCards'
 import Checkbox from '../components/Checkbox'
 import Ripple from '../components/Ripple'
+import Footer from '../components/Footer'
 
 type props = {
   name: string
@@ -79,6 +80,7 @@ export default function Checkout({
           ))}
         </View>
       </ScrollView>
+      <Footer price={123123} text="dsfajf" />
     </View>
   )
 }
