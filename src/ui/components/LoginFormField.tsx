@@ -12,6 +12,7 @@ const LoginFormField = ({
   placeHolder,
   style,
   error,
+  show,
 }: Partial<{
   value: string
   onChangeText: (text: string) => void
@@ -22,6 +23,7 @@ const LoginFormField = ({
   placeHolder: string
   style: ViewStyle
   error: string
+  show: () => void
 }>) => {
   return (
     //Todo: add onPress={() => setIsShowable(!isShowable)}
@@ -58,7 +60,7 @@ const LoginFormField = ({
             secureTextEntry={secureTextEntry}
           />
           {isShowable && (
-            <TouchableOpacity onPress={() => console.log('show')}>
+            <TouchableOpacity onPress={show}>
               <Text
                 style={{
                   color: '#5956E9',
