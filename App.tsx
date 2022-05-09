@@ -26,11 +26,6 @@ const App = () => {
   useEffect(() => {
     appDispatch(initNetInfo())
     const netInfoEventListener = NetInfo.addEventListener((state) => {
-      // if (netInfoInit) {
-      //   setNetInfoInit(false)
-      //   return
-      // }
-      // console.log('hello')
       appDispatch(setNetworkInfo(state))
     })
     appDispatch(initUser())
