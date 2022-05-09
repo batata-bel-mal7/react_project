@@ -13,15 +13,37 @@
 
 import React from 'react'
 import { Text, useWindowDimensions, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import DrawerOpenButton from '../components/DrawerOpenButton'
 import Header from '../components/Header'
 import HeaderBackButton from '../components/HeaderBackButton'
 import BagIcon from '../components/icons/BagIcon'
 import SearchBar from '../components/SearchBar'
 
 const FirstRoute = () => {
-  return <View style={{ flex: 1, backgroundColor: 'red' }} />
+  return (
+    <View style={{ flex: 1, backgroundColor: 'red', alignItems: 'center' }}>
+      <FlatList
+        style={{ flex: 1, backgroundColor: 'blue' }}
+        contentContainerStyle={{ alignItems: 'center' }}
+        horizontal
+        data={[1, 2, 3, 4, 6, 7]}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              height: 100,
+              width: 100,
+              margin: 10,
+              backgroundColor: 'green',
+            }}
+          >
+            <Text>{item}</Text>
+          </View>
+        )}
+      />
+    </View>
+  )
 }
 
 const SecondRoute = () => <View style={{ flex: 1, backgroundColor: 'blue' }} />
@@ -36,7 +58,7 @@ const renderScene = SceneMap({
   seventh: FirstRoute,
 })
 
-export default function Home() {
+export default function Home({ navigation }: any) {
   const layout = useWindowDimensions()
 
   const [index, setIndex] = React.useState(0)
@@ -53,7 +75,7 @@ export default function Home() {
   return (
     <View style={{ flex: 1 }}>
       <Header
-        leftComponent={<HeaderBackButton />}
+        leftComponent={<DrawerOpenButton navigation={navigation} />}
         middleComponent={
           <SearchBar
             text={''}
@@ -149,20 +171,3 @@ export default function Home() {
     </View>
   )
 }
-
-// const Home = ({ navigation }: any) => {
-//   return (
-//     <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-//       <Header
-//         leftComponent={<DrawerOpenButton navigation={navigation} />}
-//         middleComponent={<SearchBar text={''} onChangeText={() => {}} />}
-//         disableRightComponent
-//       />
-//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//         <Text>Home Screen</Text>
-//       </View>
-//     </View>
-//   )
-// }
-
-// export default Home
