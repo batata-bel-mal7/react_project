@@ -87,6 +87,23 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [loginWithEmailAndPassword.rejected.type]: (state, action: any) => {
+      state.loading = false
+      switch (action.error.code) {
+        case 'auth/user-not-found':
+          state.error = LoginError.USER_NOT_FOUND
+          break
+        case 'auth/wrong-password':
+          state.error = LoginError.WRONG_PASSWORD
+          break
+        case 'auth/too-many-requests':
+          state.error = LoginError.TOO_MANY_REQUESTS
+          break
+        default:
+          state.error = LoginError.NO_ERROR
+          break
+      }
+    },
     [loginWithEmailAndPassword.pending.type]: (state) => {
       state.loading = true
     },
