@@ -1,15 +1,7 @@
 import * as React from 'react'
 import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View,
-  Keyboard,
-  Image,
-  Alert,
-} from 'react-native'
+import { TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native'
 import useLogin from '../../hooks/useLogin'
 import EmailIcon from '../components/icons/EmailIcon'
 import LockIcon from '../components/icons/LockIcon'
@@ -21,34 +13,34 @@ type FormValues = {
   password: string
 }
 const Login = () => {
-  const { loginWithEmailAndPassword, loading, error: loginError } = useLogin()
+  const {
+    loginWithEmailAndPassword,
+    loading,
+    error: loginError,
+    ignoreError,
+  } = useLogin()
   const { handleSubmit, control } = useForm<FormValues>()
   useEffect(() => {
+    ignoreError()
     //TODO: animate height of form
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        console.log('keyboardDidShow')
-      }
-    )
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        console.log('keyboardDidHide')
-      }
-    )
-    return () => {
-      keyboardDidShowListener.remove()
-      keyboardDidHideListener.remove()
-    }
+    // const keyboardDidShowListener = Keyboard.addListener(
+    //   'keyboardDidShow',
+    //   () => {
+    //     console.log('keyboardDidShow')
+    //   }
+    // )
+    // const keyboardDidHideListener = Keyboard.addListener(
+    //   'keyboardDidHide',
+    //   () => {
+    //     console.log('keyboardDidHide')
+    //   }
+    // )
+    // return () => {
+    //   keyboardDidShowListener.remove()
+    //   keyboardDidHideListener.remove()
+    // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  //TODO: remve this
-  useEffect(() => {
-    if (loginError) {
-      Alert.alert(loginError)
-    }
-  })
 
   const [show, setshow] = React.useState(true)
 
@@ -111,7 +103,7 @@ const Login = () => {
               <LoginFormField
                 icon={<LockIcon />}
                 label={'Password'}
-                placeHolder="ex: hello@world.com"
+                placeHolder="* * * * * * *"
                 style={{
                   marginVertical: 10,
                 }}
@@ -136,6 +128,7 @@ const Login = () => {
           }}
           name={'password'}
         />
+        {loginError ? <Text style={styles.error}>{loginError}</Text> : null}
 
         <TouchableOpacity style={{ paddingVertical: 10 }}>
           <Text style={{ color: '#5956E9' }}>Forgot passcode?</Text>
@@ -164,6 +157,11 @@ const Login = () => {
   )
 }
 const styles = StyleSheet.create({
+  error: {
+    color: '#FF0000',
+    fontSize: 12,
+    marginVertical: 5,
+  },
   container: {
     flex: 1,
     backgroundColor: '#5956E9',
