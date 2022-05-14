@@ -85,7 +85,11 @@ const initUser = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    ignoreError: (state) => {
+      state.error = LoginError.NO_ERROR
+    },
+  },
   extraReducers: {
     [loginWithEmailAndPassword.rejected.type]: (state, action: any) => {
       state.loading = false
@@ -147,6 +151,7 @@ export const userSlice = createSlice({
 })
 
 export { loginWithEmailAndPassword, logout, initUser }
+export const { ignoreError } = userSlice.actions
 export const selectUser = (state: RootState) => state.user
 
 export default userSlice.reducer
