@@ -3,6 +3,7 @@ import { selectUser } from '../redux/user/userSlice'
 import {
   loginWithEmailAndPassword as loginWithEmailAndPasswordEvent,
   logout as logoutEvent,
+  ignoreError as ignoreErrorEvent,
 } from '../redux/user/userSlice'
 
 const useLogin = () => {
@@ -18,8 +19,18 @@ const useLogin = () => {
   const logout = () => {
     appDispatch(logoutEvent() as any)
   }
+  const ignoreError = () => {
+    appDispatch(ignoreErrorEvent())
+  }
 
-  return { loginWithEmailAndPassword, logout, loading, error, user }
+  return {
+    loginWithEmailAndPassword,
+    logout,
+    loading,
+    error,
+    user,
+    ignoreError,
+  }
 }
 
 export default useLogin
