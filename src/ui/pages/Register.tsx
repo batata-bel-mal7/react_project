@@ -2,7 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
+import { TouchableOpacity, StyleSheet, Text, View, Alert } from 'react-native'
 import useLogin from '../../hooks/useLogin'
 import { MainStackParamList } from '../../navigation/MainStack'
 import auth from '../../services/auth'
@@ -20,13 +20,8 @@ type FormValues = {
 const Register = ({
   navigation,
 }: StackScreenProps<MainStackParamList, 'Regiter'>) => {
-  const {
-    loginWithEmailAndPassword,
-    loading,
-    error: loginError,
-    ignoreError,
-  } = useLogin()
-  const { register, control } = useForm<FormValues>()
+  const { loading, error: loginError, ignoreError } = useLogin()
+  const { control, handleSubmit } = useForm<FormValues>()
   useEffect(() => {
     ignoreError()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,7 +48,7 @@ const Register = ({
         <Text style={styles.header}>Welcome</Text>
       </View>
       <View style={styles.box}>
-        <Text style={styles.boxTitle}>Login</Text>
+        <Text style={styles.boxTitle}>Create Account</Text>
         <Controller
           control={control}
           render={({ field: { onChange, value }, fieldState: { error } }) => {
@@ -131,9 +126,13 @@ const Register = ({
             width={'100%'}
             height={70}
             textColor={'#FFFFFF'}
-            onPress={() => {
-              auth.signUp
-            }}
+            onPress={handleSubmit(({ email, password }) => {
+              auth.signUp(email, password)
+              Alert.alert(
+                'Success',
+                'You have successfully registered please sign IN'
+              )
+            })}
             loading={loading}
           />
         </View>
