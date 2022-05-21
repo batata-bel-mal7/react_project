@@ -152,7 +152,7 @@ export default function Home({ navigation }: any) {
                           alignSelf: 'center',
                           color: focus ? '#5956E9' : '#9A9A9D',
                           fontFamily: 'Raleway-SemiBold',
-                          fontSize: 17,
+                          fontSize: 14,
                         }}
                       >
                         {_route.title}
