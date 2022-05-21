@@ -15,6 +15,7 @@ import {
 } from './src/redux/networkInfo/networkInfoSlice'
 import { selectUser, initUser } from './src/redux/user/userSlice'
 import auth from '@react-native-firebase/auth'
+// import products from './src/services/products'
 
 const App = () => {
   const appDispatch = useAppDispatch()
@@ -24,6 +25,13 @@ const App = () => {
   const [userInit, setUserInit] = useState(true)
 
   useEffect(() => {
+    // ;(async () => {
+    //   const m = await products.searchProductsByName('samsung')
+    //   for (let i = 0; i < m.length; i++) {
+    //     console.log(m[i])
+    //     console.log('******************')
+    //   }
+    // })()
     appDispatch(initNetInfo())
     const netInfoEventListener = NetInfo.addEventListener((state) => {
       appDispatch(setNetworkInfo(state))

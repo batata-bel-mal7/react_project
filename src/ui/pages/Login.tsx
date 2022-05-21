@@ -1,8 +1,10 @@
+import { StackScreenProps } from '@react-navigation/stack'
 import * as React from 'react'
 import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native'
 import useLogin from '../../hooks/useLogin'
+import { MainStackParamList } from '../../navigation/MainStack'
 import EmailIcon from '../components/icons/EmailIcon'
 import LockIcon from '../components/icons/LockIcon'
 import LargeBottomButton from '../components/LargeBottomButton'
@@ -12,7 +14,9 @@ type FormValues = {
   email: string
   password: string
 }
-const Login = () => {
+const Login = ({
+  navigation,
+}: StackScreenProps<MainStackParamList, 'Login'>) => {
   const {
     loginWithEmailAndPassword,
     loading,
@@ -147,7 +151,12 @@ const Login = () => {
             loading={loading}
           />
         </View>
-        <TouchableOpacity style={{ paddingVertical: 10 }}>
+        <TouchableOpacity
+          style={{ paddingVertical: 10 }}
+          onPress={() => {
+            navigation.navigate('Regiter')
+          }}
+        >
           <Text style={{ color: '#5956E9', alignSelf: 'center' }}>
             Create Account
           </Text>

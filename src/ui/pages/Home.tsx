@@ -1,89 +1,96 @@
-// import React from 'react'
-// import { StyleSheet, Text, View } from 'react-native'
-// import { GestureDetector, Gesture } from 'react-native-gesture-handler'
-// import Animated, {
-//   runOnJS,
-//   useAnimatedStyle,
-//   useSharedValue,
-//   withSpring,
-// } from 'react-native-reanimated'
-// import { useSelector } from 'react-redux'
-// import { useAppDispatch } from '../../hooks/useAppDispatch'
-// import { increment, selectCounter } from '../../redux/counter/counterSlice'
-
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, useWindowDimensions, View } from 'react-native'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import { TabView, TabBar } from 'react-native-tab-view'
+import products from '../../services/products'
 import DrawerOpenButton from '../components/DrawerOpenButton'
 import Header from '../components/Header'
-import HeaderBackButton from '../components/HeaderBackButton'
+// import HeaderBackButton from '../components/HeaderBackButton'
 import BagIcon from '../components/icons/BagIcon'
 import SearchBar from '../components/SearchBar'
+import storage from '@react-native-firebase/storage'
+import ItemCard from '../components/ItemCard'
 
-const FirstRoute = () => {
+const ProductsRoutes = ({
+  navigation,
+  categoryName,
+}: {
+  categoryName: string
+  navigation: any
+}) => {
+  const [mproducts, setProducts] = useState([])
+  const [cimages, setCimages] = useState([])
+  useEffect(() => {
+    ;(async () => {
+      const m = await products.getPoductByCategory(categoryName)
+      // load images
+      const images = await Promise.all(
+        m.map(async (product) => {
+          const image = await storage()
+            .ref(product.images[0][0])
+            .getDownloadURL()
+          return image
+        })
+      )
+      setCimages(images as any)
+      const aproducts = m.map((product, idx) => {
+        return {
+          ...product,
+          key: product.name,
+          image: images[idx],
+        }
+      })
+      setProducts(aproducts as any)
+    })()
+  }, [categoryName])
   return (
-    <View style={{ flex: 1, backgroundColor: 'red', alignItems: 'center' }}>
+    <View style={{ flex: 1 }}>
       <FlatList
-        style={{ flex: 1, backgroundColor: 'blue' }}
-        contentContainerStyle={{ alignItems: 'center' }}
         horizontal
-        data={[1, 2, 3, 4, 6, 7]}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              height: 100,
-              width: 100,
-              margin: 10,
-              backgroundColor: 'green',
+        data={mproducts}
+        renderItem={({ item, index }: any) => (
+          <ItemCard
+            key={item.name}
+            imageSrc={{ uri: cimages[index] }}
+            width={200}
+            height={400}
+            text={item.name}
+            onTap={() => {
+              navigation.navigate('Product', {
+                product: item,
+              })
             }}
-          >
-            <Text>{item}</Text>
-          </View>
+          />
         )}
       />
     </View>
   )
 }
 
-const SecondRoute = () => <View style={{ flex: 1, backgroundColor: 'blue' }} />
-
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-  third: FirstRoute,
-  fourth: SecondRoute,
-  fifth: FirstRoute,
-  sixth: SecondRoute,
-  seventh: FirstRoute,
-})
-
 export default function Home({ navigation }: any) {
   const layout = useWindowDimensions()
+  const [query, setQuery] = useState('')
 
   const [index, setIndex] = React.useState(0)
-  const [routes] = React.useState([
-    { key: 'first', title: 'First' },
-    { key: 'second', title: 'Second' },
-    { key: 'third', title: 'third' },
-    { key: 'fourth', title: 'fourth' },
-    { key: 'fifth', title: 'fifth' },
-    { key: 'sixth', title: 'sixth' },
-    { key: 'seventh', title: 'seventh' },
-  ])
+  const [routes, setRoutes] = React.useState<{ key: string; title: string }[]>(
+    []
+  )
+  useEffect(() => {
+    ;(async () => {
+      const ma = await products.getCategories()
+      const newRoutes = ma.map((item: any) => ({
+        key: item.createdAt.toString(),
+        title: item.name,
+      }))
+      setRoutes(newRoutes)
+    })()
+  }, [])
 
   return (
     <View style={{ flex: 1 }}>
       <Header
         leftComponent={<DrawerOpenButton navigation={navigation} />}
-        middleComponent={
-          <SearchBar
-            text={''}
-            onChangeText={function (text: string): void {
-              throw new Error('Function not implemented.')
-            }}
-          />
-        }
+        middleComponent={<SearchBar text={query} onChangeText={setQuery} />}
         rightComponent={<BagIcon color={'#200E32'} />}
       />
       <View
@@ -107,7 +114,9 @@ export default function Home({ navigation }: any) {
       </View>
       <TabView
         navigationState={{ index, routes }}
-        renderScene={renderScene}
+        renderScene={({ route }) => (
+          <ProductsRoutes categoryName={route.title} navigation={navigation} />
+        )}
         onIndexChange={setIndex}
         swipeEnabled={false}
         renderTabBar={(props) => (
@@ -153,7 +162,7 @@ export default function Home({ navigation }: any) {
                           alignSelf: 'center',
                           color: focus ? '#5956E9' : '#9A9A9D',
                           fontFamily: 'Raleway-SemiBold',
-                          fontSize: 17,
+                          fontSize: 14,
                         }}
                       >
                         {_route.title}

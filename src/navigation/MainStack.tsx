@@ -6,12 +6,14 @@ import { NetworkInfoState } from '../redux/networkInfo/networkInfoSlice'
 import SplashScreen from '../ui/pages/SplashScreen'
 import Login from '../ui/pages/Login'
 import { UserState } from '../redux/user/userSlice'
+import Register from '../ui/pages/Register'
 
 export type MainStackParamList = {
   Splash: undefined
   Login: undefined
   DrawerStack: undefined
   NoIternet: undefined
+  Regiter: undefined
 }
 
 const Stack = createStackNavigator<MainStackParamList>()
@@ -40,7 +42,10 @@ const MainStack = ({
           {user.user ? (
             <Stack.Screen name="DrawerStack" component={DrawerStack} />
           ) : (
-            <Stack.Screen name="Login" component={Login} />
+            <>
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Regiter" component={Register} />
+            </>
           )}
         </>
       ) : (

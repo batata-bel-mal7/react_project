@@ -1,19 +1,27 @@
 import { StyleSheet, Text, View, ViewStyle } from 'react-native'
 import React from 'react'
 import { Image } from 'react-native'
-
+import { TapGestureHandler } from 'react-native-gesture-handler'
 type props = {
   imageSrc: any
   width: ViewStyle['width']
   height: ViewStyle['height']
   text: string
+  onTap: () => void
 }
-export default function ItemCard({ imageSrc, height, width, text }: props) {
+export default function ItemCard({
+  imageSrc,
+  height,
+  width,
+  text,
+  onTap,
+}: props) {
   const styles = StyleSheet.create({
     container: {
       height: height,
       width: width,
       marginTop: 20,
+      elevation: 5,
     },
     image: {
       alignSelf: 'center',
@@ -28,6 +36,8 @@ export default function ItemCard({ imageSrc, height, width, text }: props) {
       height: '90%',
       marginTop: '20%',
       paddingTop: '60%',
+      justifyContent: 'flex-end',
+      paddingBottom: '20%',
     },
     text: {
       fontFamily: 'Raleway',
@@ -52,12 +62,28 @@ export default function ItemCard({ imageSrc, height, width, text }: props) {
   })
 
   return (
-    <View style={styles.container}>
-      <Image source={imageSrc} style={styles.image} />
-      <View style={styles.infoBox}>
-        <Text style={styles.text}>{text}</Text>
-        <Text style={styles.price}>From £579</Text>
+    <TapGestureHandler onEnded={onTap}>
+      <View style={styles.container}>
+        <Image
+          source={imageSrc}
+          resizeMode={'stretch'}
+          style={[
+            styles.image,
+            {
+              height: 150,
+              width: 150,
+              borderRadius: 100,
+              // margin: 10,
+              alignSelf: 'center',
+              backgroundColor: 'red',
+            },
+          ]}
+        />
+        <View style={styles.infoBox}>
+          <Text style={styles.text}>{text}</Text>
+          <Text style={styles.price}>From £579</Text>
+        </View>
       </View>
-    </View>
+    </TapGestureHandler>
   )
 }

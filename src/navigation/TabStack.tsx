@@ -13,11 +13,11 @@ import ProfileFilledIcon from '../ui/components/icons/ProfileFilledIcon'
 import ProfileIcon from '../ui/components/icons/ProfileIcon'
 import BuyFilledIcon from '../ui/components/icons/BuyFilledIcon'
 import BuyIcon from '../ui/components/icons/BuyIcon'
-import Home from '../ui/pages/Home'
 import FavouritePage from '../ui/pages/Favorites'
 import Profile from '../ui/pages/Profile'
 import { useDrawerProgress } from '@react-navigation/drawer'
 import HistoryPage from '../ui/pages/OrderHistory'
+import ProductStack from './ProductStack'
 
 const Tab = createBottomTabNavigator()
 
@@ -80,7 +80,7 @@ export default function App() {
           },
         })}
       >
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="HomeTab" component={ProductStack} />
         <Tab.Screen name="Favorite" component={FavouritePage} />
         <Tab.Screen name="Profile" component={Profile} />
         <Tab.Screen name="Orders" component={HistoryPage} />
