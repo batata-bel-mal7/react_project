@@ -133,7 +133,6 @@ const Register = ({
             textColor={'#FFFFFF'}
             onPress={() => {
               auth.signUp
-              navigation.navigate('Login')
             }}
             loading={loading}
           />
