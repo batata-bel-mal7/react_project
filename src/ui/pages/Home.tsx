@@ -11,12 +11,19 @@ import SearchBar from '../components/SearchBar'
 import storage from '@react-native-firebase/storage'
 import ItemCard from '../components/ItemCard'
 
-const ProductsRoutes = ({ categoryName }: { categoryName: string }) => {
+const ProductsRoutes = ({
+  navigation,
+  categoryName,
+}: {
+  categoryName: string
+  navigation: any
+}) => {
   const [mproducts, setProducts] = useState([])
   const [cimages, setCimages] = useState([])
   useEffect(() => {
     ;(async () => {
       const m = await products.getPoductByCategory(categoryName)
+      // load images
       const images = await Promise.all(
         m.map(async (product) => {
           const image = await storage()
@@ -39,8 +46,6 @@ const ProductsRoutes = ({ categoryName }: { categoryName: string }) => {
   return (
     <View style={{ flex: 1 }}>
       <FlatList
-        // style={{ flex: 1, backgroundColor: 'blue' }}
-        // contentContainerStyle={{ alignItems: 'center' }}
         horizontal
         data={mproducts}
         renderItem={({ item, index }: any) => (
@@ -50,6 +55,11 @@ const ProductsRoutes = ({ categoryName }: { categoryName: string }) => {
             width={200}
             height={400}
             text={item.name}
+            onTap={() => {
+              navigation.navigate('Product', {
+                product: item,
+              })
+            }}
           />
         )}
       />
@@ -105,7 +115,7 @@ export default function Home({ navigation }: any) {
       <TabView
         navigationState={{ index, routes }}
         renderScene={({ route }) => (
-          <ProductsRoutes categoryName={route.title} />
+          <ProductsRoutes categoryName={route.title} navigation={navigation} />
         )}
         onIndexChange={setIndex}
         swipeEnabled={false}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import VariantSelectionButton from './VariantSelectionButton'
 
 const VariantSelectionBar = ({
@@ -8,7 +8,7 @@ const VariantSelectionBar = ({
   title,
 }: {
   variants: Array<{ text: string; icon: JSX.Element }>
-  onVarientChange: (index: { text: string; icon: JSX.Element }) => void
+  onVarientChange: (index: string) => void
   title: string
 }) => {
   const [selectedVariant, setSelectedVariant] = React.useState(0)
@@ -25,8 +25,31 @@ const VariantSelectionBar = ({
       >
         {title}
       </Text>
-      <View style={{ flexDirection: 'row' }}>
-        {variants.map((variant, index) => (
+      <ScrollView horizontal>
+        {variants.map((item, index) => (
+          <View
+            key={index}
+            style={{
+              minWidth: 150,
+              maxWidth: 150,
+              minHeight: 50,
+              marginHorizontal: 10,
+            }}
+          >
+            <VariantSelectionButton
+              text={item.text}
+              icon={item.icon}
+              onPress={() => {
+                setSelectedVariant(index)
+                onVarientChange(variants[index].text)
+              }}
+              active={selectedVariant === index}
+              width={'100%'}
+              height={50}
+            />
+          </View>
+        ))}
+        {/* {variants.map((variant, index) => (
           <View
             key={index}
             style={{
@@ -42,15 +65,15 @@ const VariantSelectionBar = ({
               icon={variant.icon}
               width={'100%'}
               height={40}
-              style={{ flex: 1, maxWidth: 120 }}
+              style={{ flex: 1, minWidth: 120 }}
               onPress={() => {
                 onVarientChange(variant)
                 setSelectedVariant(index)
               }}
             />
           </View>
-        ))}
-      </View>
+        ))} */}
+      </ScrollView>
     </View>
   )
 }
