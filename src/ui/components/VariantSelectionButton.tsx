@@ -31,7 +31,7 @@ export default function VariantSelectionButton({
       width: width,
       height: height,
       borderColor: active ? 'black' : '#e3e3e3',
-      borderWidth:  1,
+      borderWidth: 1,
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 10,
