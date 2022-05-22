@@ -29,6 +29,12 @@ async function fetchUser(): Promise<UserState> {
   return state
 }
 
+const signUp = async (email: string, password: string): Promise<UserState> => {
+  console.log('signUpWithEmailAndPassword', email, password)
+  await auth().createUserWithEmailAndPassword(email, password)
+  return fetchUser()
+}
+
 const signInWithEmailAndPassword = async (
   email: string,
   password: string
@@ -43,4 +49,4 @@ const signOut = async (): Promise<UserState> => {
   return fetchUser()
 }
 
-export default { fetchUser, signInWithEmailAndPassword, signOut }
+export default { fetchUser, signInWithEmailAndPassword, signOut, signUp }
