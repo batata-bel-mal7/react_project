@@ -1,4 +1,4 @@
-# 7enkesh
+# react project
 7enkesh e-commerce
 run as any app create with react natve cli 
 refer for enviroment setup to https://reactnative.dev/docs/environment-setup
